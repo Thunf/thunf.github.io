@@ -1,0 +1,21 @@
+{
+  "name": "thunf.io",
+  "version": "0.0.0",
+  "homepage": "https://github.com/Thunf/thunf.github.com",
+  "authors": [
+    "Thunf <458859360@qq.com>"
+  ],
+  "description": "page for thunf",
+  "main": "index.html",
+  "keywords": [
+    "thunf"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
