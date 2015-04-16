@@ -9,6 +9,7 @@ var jshint = require("gulp-jshint");
 var cssminify = require("gulp-minify-css");
 
 var browserSync = require("browser-sync").create();
+var autoprefixer = require("gulp-autoprefixer");
 
 
 //路径
@@ -47,6 +48,10 @@ gulp.task("jsmini",["jshint"],function(){
 gulp.task("cssmini",function(){
     return gulp.src(paths.css)
         .pipe(concat("main.css"))
+        .pipe(autoprefixer({
+            browsers: ['> 1%'],
+            cascade: false
+        }))
         .pipe(gulp.dest(pathsto.css))
         .pipe(cssminify())
         .pipe(rename({
