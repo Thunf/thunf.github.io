@@ -11,6 +11,7 @@ var cssminify = require("gulp-minify-css");
 var browserSync = require("browser-sync").create();
 var autoprefixer = require("gulp-autoprefixer");
 
+var changed = require("gulp-changed");
 
 //路径
 var paths = {
