@@ -13,6 +13,8 @@ var autoprefixer = require("gulp-autoprefixer");
 
 var changed = require("gulp-changed");
 
+var inject = require("gulp-inject");
+
 //路径
 var paths = {
     js :"./dev/**/*.js",
@@ -69,6 +71,12 @@ gulp.task("browser-sync",function(){
         server: "./"
     });
     gulp.watch("./index.html").on("change", browserSync.reload);
+});
+
+gulp.task("inject", function(){
+    var target = gulp.src("./index.html");
+    var source = gulp.src([pathsto.js + "**/*.min.js", pathsto.css + "**/*.min.css"], {read: false});
+    return target.pipe(inject(source)).pipe(gulp.dest('./'));
 });
 
 // watch
