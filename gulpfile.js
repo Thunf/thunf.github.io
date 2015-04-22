@@ -15,6 +15,8 @@ var changed = require("gulp-changed");
 
 var inject = require("gulp-inject");
 
+var mainBowerFiles = require("main-bower-files");
+
 //路径
 var paths = {
     js :"./dev/**/*.js",
@@ -76,7 +78,10 @@ gulp.task("browser-sync",function(){
 gulp.task("inject", function(){
     var target = gulp.src("./index.html");
     var source = gulp.src([pathsto.js + "**/*.min.js", pathsto.css + "**/*.min.css"], {read: false});
-    return target.pipe(inject(source)).pipe(gulp.dest('./'));
+    var bowerFiles = gulp.src(mainBowerFiles());
+    return target.pipe(inject(bowerFiles,{name: "bower"}))
+        .pipe(inject(source))
+        .pipe(gulp.dest('./'));
 });
 
 // watch
