@@ -73,6 +73,7 @@ gulp.task("browser-sync",function(){
         server: "./"
     });
     gulp.watch("./index.html").on("change", browserSync.reload);
+    gulp.watch("./yingqin/**/*.*").on("change", browserSync.reload);
 });
 
 gulp.task("inject", function(){
