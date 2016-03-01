@@ -1,0 +1,5 @@
+_config.yml
+*.iml
+.idea
+
+**/.DS_Store
