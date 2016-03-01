@@ -1,5 +1,13 @@
-_config.yml
-*.iml
-.idea
-
 **/.DS_Store
+
+node_modules
+
+db.json
+
+_config.yml
+
+themes/**/
+
+public
+
+
