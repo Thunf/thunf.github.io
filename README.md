@@ -4,7 +4,7 @@ page for thunf
 
 ## Usage
 
-### 定制config
+### Example such as thunf's config
 ```sh
 cp _config.thunf.yml _config.yml
 ```
