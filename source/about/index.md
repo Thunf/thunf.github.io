@@ -1,4 +1,6 @@
 ---
-title: "About"
-layout: "page"
+title: About
+layout: about
+comments: false
 ---
+
