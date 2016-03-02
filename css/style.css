@@ -140,7 +140,7 @@ code {
   background-color: #f8f8f8;
 }
 .outer {
-  max-width: 1320px;
+  max-width: 1220px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -187,16 +187,32 @@ code {
   #main {
     display: inline;
     float: left;
-    width: 52.307692307692314%;
-    margin: 0 0.769230769230769%;
+    width: 73.33333333333333%;
+    margin: 0 0.833333333333333%;
   }
 }
 @media screen and (min-width: 800px) and (max-width: 1199px) {
   #main {
     display: inline;
     float: left;
-    width: 67.6923076923077%;
-    margin: 0 0.769230769230769%;
+    width: 73.33333333333333%;
+    margin: 0 0.833333333333333%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  #side {
+    display: inline;
+    float: left;
+    width: 23.333333333333332%;
+    margin: 0 0.833333333333333%;
+  }
+}
+@media screen and (min-width: 800px) and (max-width: 1199px) {
+  #side {
+    display: inline;
+    float: left;
+    width: 23.333333333333332%;
+    margin: 0 0.833333333333333%;
   }
 }
 .archive-article-header a,
@@ -625,10 +641,6 @@ code {
   border-bottom: none;
 }
 #profile {
-  display: inline;
-  float: left;
-  width: 21.53846153846154%;
-  margin: 0 0.769230769230769%;
   display: none;
 }
 @media screen and (min-width: 1200px) {
@@ -1571,22 +1583,6 @@ ol.toc {
   line-height: 1.6em;
   font-size: 0.85em;
 }
-@media screen and (min-width: 1200px) {
-  #sidebar {
-    display: inline;
-    float: left;
-    width: 21.53846153846154%;
-    margin: 0 0.769230769230769%;
-  }
-}
-@media screen and (min-width: 800px) and (max-width: 1199px) {
-  #sidebar {
-    display: inline;
-    float: left;
-    width: 29.230769230769234%;
-    margin: 0 0.769230769230769%;
-  }
-}
 .widget {
   line-height: 1.6em;
   word-wrap: break-word;
@@ -1719,21 +1715,25 @@ ol.toc {
 #toTop {
   cursor: pointer;
   text-align: center;
-  width: 64px;
-  height: 64px;
+  width: 40px;
+  height: 40px;
   color: #fff;
-  font-size: 32px;
-  line-height: 64px;
+  font-size: 25px;
+  line-height: 38px;
   background: #565a5f;
   -webkit-border-radius: 4px;
   border-radius: 4px;
+  bottom: 20px;
+  position: fixed;
+  display: none;
+  opacity: 0.77;
 }
 @media screen and (min-width: 560px) and (max-width: 799px) {
   #toTop {
     width: 54px;
     height: 54px;
     font-size: 28px;
-    line-height: 54px;
+    line-height: 50px;
   }
 }
 @media screen and (max-width: 559px) {
@@ -1741,12 +1741,14 @@ ol.toc {
     width: 54px;
     height: 54px;
     font-size: 28px;
-    line-height: 54px;
+    line-height: 50px;
   }
 }
-#toTop.fix {
-  bottom: 20px;
-  position: fixed;
+#toTop:before {
+  cursor: pointer;
+}
+#toTop:hover {
+  opacity: 1;
 }
 #recent-post li {
   padding: 10px 0 10px 94px;
