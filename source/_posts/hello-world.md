@@ -2,7 +2,7 @@
 title: Hello World
 date: 2016-03-01 16:21:12
 toc: true
-tags: thinking
+tags: blog
 categories:
 thumbnail: http://www.bianceng.cn/c/images/20011119_cb_22.jpg
 photo:
