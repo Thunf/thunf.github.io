@@ -4,7 +4,7 @@ date: 2016-03-01 16:21:12
 toc: true
 tags: blog
 categories:
-thumbnail: http://www.bianceng.cn/c/images/20011119_cb_22.jpg
+thumbnail: http://7xrhcw.com1.z0.glb.clouddn.com/16-3-4/53950428.jpg
 photo:
 ---
 

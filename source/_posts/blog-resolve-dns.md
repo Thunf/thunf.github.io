@@ -103,11 +103,17 @@ git remote -v
 ```sh
 // 提交到github远程仓库，提交到coding远程仓库
 git push origin:master && git push coding:master
+
+// 或者可以如下简写
+git push && git push coding
 ```
 
 如此便完成了两个仓库的同步更新。以后只需重复`PUSH更新`步骤就可以了
 
+----
 
+补充:
+  - 2016-03-04：为了在PUSH时免输入github/coding账号密码，需要在github/coding的`设置-SSHKey`中先添加本机的`SSH-RSA公钥`。
 
 
 
