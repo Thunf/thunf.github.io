@@ -24,7 +24,7 @@ gitcafe即将合并到coding
 gitcafe即将合并到coding
 …">
 <meta property="og:image" content="http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/72446606.jpg">
-<meta property="og:updated_time" content="2016-03-03T11:13:32.000Z">
+<meta property="og:updated_time" content="2016-03-04T03:01:32.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把博客托管到github和coding">
 <meta name="twitter:description" content="要说为什么要这么干，似乎可以找到很多理由：
@@ -209,8 +209,13 @@ gitcafe即将合并到coding
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 打开静态文件根目录</span><br><span class="line"><span class="built_in">cd</span> blog/public</span><br><span class="line"></span><br><span class="line">// 添加coding的仓库地址</span><br><span class="line">git remote add coding &lt;你的coding中项目的仓库地址&gt;</span><br><span class="line"></span><br><span class="line">// 查看已有远程仓库地址</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
 <p>为了保持public文件夹同步，也就是静态网站文件同步，所以设置要在blog/public目录中进行。</p>
 <h3 id="PUSH更新"><a href="#PUSH更新" class="headerlink" title="PUSH更新"></a>PUSH更新</h3><p>当确认了更改，<code>hexo g</code>、<code>git add</code>、<code>git commit</code>完成后</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">// 提交到github远程仓库，提交到coding远程仓库</span><br><span class="line">git push origin:master &amp;&amp; git push coding:master</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 提交到github远程仓库，提交到coding远程仓库</span><br><span class="line">git push origin:master &amp;&amp; git push coding:master</span><br><span class="line"></span><br><span class="line">// 或者可以如下简写</span><br><span class="line">git push &amp;&amp; git push coding</span><br></pre></td></tr></table></figure>
 <p>如此便完成了两个仓库的同步更新。以后只需重复<code>PUSH更新</code>步骤就可以了</p>
+<hr>
+<p>补充:</p>
+<ul>
+<li>2016-03-04：为了在PUSH时免输入github/coding账号密码，需要在github/coding的<code>设置-SSHKey</code>中先添加本机的<code>SSH-RSA公钥</code>。</li>
+</ul>
 
         
         </div>
@@ -333,7 +338,7 @@ gitcafe即将合并到coding
                             <a href="/2016/03/01/hello-world/" class="thumbnail">
     
     
-        <span style="background-image:url(http://www.bianceng.cn/c/images/20011119_cb_22.jpg)" alt="Hello World" class="thumbnail-image"></span>
+        <span style="background-image:url(http://7xrhcw.com1.z0.glb.clouddn.com/16-3-4/53950428.jpg)" alt="Hello World" class="thumbnail-image"></span>
     
 </a>
                         </div>
