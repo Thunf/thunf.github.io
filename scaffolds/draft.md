@@ -1,4 +1,9 @@
 ---
 title: {{ title }}
-tags:
+date: {{ date }}
+toc: true
+tags: 
+categories: 
+thumbnail: 
+photo: 
 ---
