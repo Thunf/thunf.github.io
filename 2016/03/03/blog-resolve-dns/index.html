@@ -24,7 +24,7 @@ gitcafe即将合并到coding
 gitcafe即将合并到coding
 …">
 <meta property="og:image" content="http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/72446606.jpg">
-<meta property="og:updated_time" content="2016-04-29T03:23:35.000Z">
+<meta property="og:updated_time" content="2016-07-01T03:04:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把博客托管到github和coding">
 <meta name="twitter:description" content="要说为什么要这么干，似乎可以找到很多理由：
@@ -206,10 +206,10 @@ gitcafe即将合并到coding
 <p>如此设置就可以将国内访问解析到coding服务器上，而海外线路统一解析到github服务器上了</p>
 <h2 id="本地操作"><a href="#本地操作" class="headerlink" title="本地操作"></a>本地操作</h2><p>有了两个同样的远程仓库后，我们就可以规划本地操作了。</p>
 <h3 id="设置remote"><a href="#设置remote" class="headerlink" title="设置remote"></a>设置remote</h3><p>现在可以添加remote，这样就可以把更改同时提交到两个仓库里，保持线上同步。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 打开静态文件根目录</span><br><span class="line"><span class="built_in">cd</span> blog/public</span><br><span class="line"></span><br><span class="line">// 添加coding的仓库地址</span><br><span class="line">git remote add coding &lt;你的coding中项目的仓库地址&gt;</span><br><span class="line"></span><br><span class="line">// 查看已有远程仓库地址</span><br><span class="line">git remote -v</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 打开静态文件根目录</div><div class="line"><span class="built_in">cd</span> blog/public</div><div class="line"></div><div class="line">// 添加coding的仓库地址</div><div class="line">git remote add coding &lt;你的coding中项目的仓库地址&gt;</div><div class="line"></div><div class="line">// 查看已有远程仓库地址</div><div class="line">git remote -v</div></pre></td></tr></table></figure>
 <p>为了保持public文件夹同步，也就是静态网站文件同步，所以设置要在blog/public目录中进行。</p>
 <h3 id="PUSH更新"><a href="#PUSH更新" class="headerlink" title="PUSH更新"></a>PUSH更新</h3><p>当确认了更改，<code>hexo g</code>、<code>git add</code>、<code>git commit</code>完成后</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 提交到github远程仓库，提交到coding远程仓库</span><br><span class="line">git push origin:master &amp;&amp; git push coding:master</span><br><span class="line"></span><br><span class="line">// 或者可以如下简写</span><br><span class="line">git push &amp;&amp; git push coding</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">// 提交到github远程仓库，提交到coding远程仓库</div><div class="line">git push origin:master &amp;&amp; git push coding:master</div><div class="line"></div><div class="line">// 或者可以如下简写</div><div class="line">git push &amp;&amp; git push coding</div></pre></td></tr></table></figure>
 <p>如此便完成了两个仓库的同步更新。以后只需重复<code>PUSH更新</code>步骤就可以了</p>
 <hr>
 <p>补充:</p>
@@ -238,6 +238,15 @@ gitcafe即将合并到coding
     
         
 <nav id="article-nav">
+    
+        <a href="/2016/07/01/work-for-one-year/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    余闲杂记：七月记
+                
+            </div>
+        </a>
     
     
         <a href="/2016/03/01/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
@@ -279,13 +288,13 @@ gitcafe即将合并到coding
         <div class="article-info profile-block">
             <div class="article-info-block">
                 <a class="profile-link" href="/archives" >
-                    2
+                    3
                     <span>文章</span>
                 </a>                
             </div>
             <div class="article-info-block">
                 <a class="profile-link" href="/tags" >
-                    2
+                    3
                     <span>标签</span>
                 </a>                
             </div>
@@ -313,6 +322,24 @@ gitcafe即将合并到coding
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
             <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/07/01/work-for-one-year/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-title"><a href="/2016/07/01/work-for-one-year/" class="title">余闲杂记：七月记</a></p>
+                            <p class="item-date"><time datetime="2016-07-01T10:03:38.000Z" itemprop="datePublished">2016-07-01</time></p>
+                            <p class="item-category"></p>
+                        </div>
+                    </li>
                 
                     <li>
                         
