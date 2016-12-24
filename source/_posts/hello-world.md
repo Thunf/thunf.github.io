@@ -58,15 +58,15 @@ blog ==> `thunf.github.io`/`blog-server`
 如此一来，若在其他机器上做开发
 ```js
 // clone项目，切换到`blog-server`分支，配置并安装依赖
-git clone 'https://github.com/Thunf/thunf.github.io.git' blog
+git clone 'git@github.com:Thunf/thunf.github.io.git' blog
 cd blog && git checkout blog-server && git pull origin blog-server
 cp _config.thunf.yml _config.yml && npm install
 
 // clone项目`master`分支到public文件夹下
-git clone 'https://github.com/Thunf/thunf.github.io.git' public
+git clone 'git@github.com:Thunf/thunf.github.io.git' public
 
 // clone主题到themes/icarus目录下，配置
-cd themes && git clone 'https://github.com/Thunf/hexo-theme-icarus.git' icarus
+cd themes && git clone 'git@github.com:Thunf/hexo-theme-icarus.git' icarus
 cd icarus && cp _config.thunf.yml _config.yml
 
 ```
@@ -89,7 +89,10 @@ cd public && git push origin master
 
 写写生活，写写工作，写写折腾... 围观与求围观
 
+----
 
+补充:
+  - 2016-07-01：clone时选择使用SSH地址 - Use an SSH key and passphrase from account.
 
 
 [0]: https://blog.jamespan.me/
