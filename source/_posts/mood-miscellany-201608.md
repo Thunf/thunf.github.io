@@ -5,7 +5,7 @@ date: 2016-08-01 00:28:41
 tags:
 	- 余闲杂记
 categories:
-thumbnail:
+thumbnail: http://7xrhcw.com1.z0.glb.clouddn.com/IMG_0663.JPG
 photo:
 ---
 
