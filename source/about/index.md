@@ -22,4 +22,7 @@ comments: false
 
 
 - 联系方式：
-![Thunf](http://7xrhcw.com1.z0.glb.clouddn.com/wx%202.jpg)
+
+<img src="http://7xrhcw.com1.z0.glb.clouddn.com/wx%202.jpg" alt="wx Thunf" width="30%">
+<img src="http://7xrhcw.com1.z0.glb.clouddn.com/wx_m.jpg" alt="wx donate" width="30%">
+    
