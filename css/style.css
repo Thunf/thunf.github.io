@@ -138,6 +138,12 @@ code {
   font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
   background-color: #f8f8f8;
 }
+@media screen and (max-width: 559px) {
+  p,
+  ul {
+    word-break: break-all;
+  }
+}
 .outer {
   max-width: 1220px;
   margin: 0 auto;
@@ -1277,6 +1283,11 @@ ol.toc {
   float: right;
   position: relative;
   z-index: 1;
+}
+@media screen and (max-width: 559px) {
+  #toc {
+    float: none;
+  }
 }
 #toc .toc {
   padding: 0;
