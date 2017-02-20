@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>前后端分离之路 - Vue2项目多入口模板改造方案 | Thunf&#39;Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="做前后端分离也有一段时间了，业务一直在用Vue@1.x的多入口方案，也一直懒癌发作没搞2.x的版本。适逢最近在等某宝小程序的构建，由于迟迟不定技术方案，只好暂缓先捯饬一下Vue@2.x项目多入口的构建方案。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前后端分离之路 - Vue2项目多入口模板改造方案">
+<meta property="og:url" content="http://www.thunf.me/2017/02/17/20170217-grace-vue-boilerplate/index.html">
+<meta property="og:site_name" content="Thunf'Blog">
+<meta property="og:description" content="做前后端分离也有一段时间了，业务一直在用Vue@1.x的多入口方案，也一直懒癌发作没搞2.x的版本。适逢最近在等某宝小程序的构建，由于迟迟不定技术方案，只好暂缓先捯饬一下Vue@2.x项目多入口的构建方案。">
+<meta property="og:image" content="http://7xrhcw.com1.z0.glb.clouddn.com/blog_vue-grace.jpg">
+<meta property="og:updated_time" content="2017-02-20T15:49:55.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前后端分离之路 - Vue2项目多入口模板改造方案">
+<meta name="twitter:description" content="做前后端分离也有一段时间了，业务一直在用Vue@1.x的多入口方案，也一直懒癌发作没搞2.x的版本。适逢最近在等某宝小程序的构建，由于迟迟不定技术方案，只好暂缓先捯饬一下Vue@2.x项目多入口的构建方案。">
+<meta name="twitter:image" content="http://7xrhcw.com1.z0.glb.clouddn.com/blog_vue-grace.jpg">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/vendor/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                
+                <span class="site-title">Thunf&#39;Blog</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">主页</a>
+                
+                    <a class="main-nav-link" href="/archives">列表</a>
+                
+                    <a class="main-nav-link" href="/tags">标签</a>
+                
+                    <a class="main-nav-link" href="/about">关于</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="http://www.thunf.me"></form>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">主页</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">列表</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">关于</a></td>
+                
+                <td>
+                    
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="http://www.thunf.me"></form>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            <section id="main"><article id="post-20170217-grace-vue-boilerplate" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            前后端分离之路 - Vue2项目多入口模板改造方案
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2017/02/17/20170217-grace-vue-boilerplate/">
+            <time datetime="2017-02-17T13:59:07.000Z" itemprop="datePublished">2017-02-17</time>
+        </a>
+    </div>
+
+
+                    
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/boilerplate/">boilerplate</a>, <a class="tag-link" href="/tags/koa-grace/">koa-grace</a>, <a class="tag-link" href="/tags/vue/">vue</a>
+    </div>
+
+                    
+                    <span id="busuanzi_container_page_pv" class="right">
+                        已被围观<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                    
+                </div>
+
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#关于项目模板"><span class="toc-number">1.</span> <span class="toc-text">关于项目模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于目录结构"><span class="toc-number">2.</span> <span class="toc-text">关于目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于多入口（Multiple-Entry）"><span class="toc-number">3.</span> <span class="toc-text">关于多入口（Multiple Entry）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于文件产出（Files-Output）"><span class="toc-number">4.</span> <span class="toc-text">关于文件产出（Files Output）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#产出规则及需求"><span class="toc-number">4.1.</span> <span class="toc-text">产出规则及需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#产出html入口文件"><span class="toc-number">4.2.</span> <span class="toc-text">产出html入口文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#产出js-css静态资源"><span class="toc-number">4.3.</span> <span class="toc-text">产出js/css静态资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件加戳：Query-or-fileName"><span class="toc-number">4.4.</span> <span class="toc-text">文件加戳：Query or fileName</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他资源路径问题"><span class="toc-number">4.5.</span> <span class="toc-text">其他资源路径问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#生成图片引用路径"><span class="toc-number">4.5.1.</span> <span class="toc-text">生成图片引用路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#图片资源引用方式"><span class="toc-number">4.5.2.</span> <span class="toc-text">图片资源引用方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于提升开发效率"><span class="toc-number">5.</span> <span class="toc-text">关于提升开发效率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#自动配置开发环境"><span class="toc-number">5.1.</span> <span class="toc-text">自动配置开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动打开项目首页"><span class="toc-number">5.2.</span> <span class="toc-text">自动打开项目首页</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关于ESLint"><span class="toc-number">6.</span> <span class="toc-text">关于ESLint</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#检查你的代码"><span class="toc-number">6.1.</span> <span class="toc-text">检查你的代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#翻一翻文档"><span class="toc-number">6.2.</span> <span class="toc-text">翻一翻文档</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#配置extends-rules"><span class="toc-number">6.2.1.</span> <span class="toc-text">配置extends/rules</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置failOnWarning"><span class="toc-number">6.2.2.</span> <span class="toc-text">配置failOnWarning</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不想用就别硬用"><span class="toc-number">6.3.</span> <span class="toc-text">不想用就别硬用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他问题"><span class="toc-number">7.</span> <span class="toc-text">其他问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#报错信息不显示"><span class="toc-number">7.1.</span> <span class="toc-text">报错信息不显示</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#avoidTerminalColorGray"><span class="toc-number">7.1.1.</span> <span class="toc-text">avoidTerminalColorGray</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NEXT"><span class="toc-number">8.</span> <span class="toc-text">NEXT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#抽取代码（TODO）"><span class="toc-number">8.1.</span> <span class="toc-text">抽取代码（TODO）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动创建新入口（TODO）"><span class="toc-number">8.2.</span> <span class="toc-text">自动创建新入口（TODO）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#热加载（TODO）"><span class="toc-number">8.3.</span> <span class="toc-text">热加载（TODO）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#需要建议or意见"><span class="toc-number">8.4.</span> <span class="toc-text">需要建议or意见</span></a></li></ol></li></ol>
+                </div>
+            
+            <p>做前后端分离也有一段时间了，业务一直在用Vue@1.x的多入口方案，也一直懒癌发作没搞2.x的版本。适逢最近在等某宝小程序的构建，由于迟迟不定技术方案，只好暂缓先捯饬一下Vue@2.x项目多入口的构建方案。</p>
+<a id="more"></a>
+<style>
+  .fix-li-img + p + ul img,
+  .fix-li-img + p + blockquote img{
+    display: inline-block;
+    vertical-align: sub;
+  }
+</style>
+
+<p>此处强插一条硬广，推销一下自家的前后端分离框架：</p>
+<p><div class="fix-li-img"></div></p>
+<blockquote>
+<p><img src="https://img.shields.io/github/stars/xiongwilee/koa-grace.svg?label=%E2%98%85" alt=""> <strong><a href="https://github.com/xiongwilee/koa-grace" target="_blank" rel="external">Koa-grace@2.0</a></strong> — 全新的基于Koa@v2.x的MVC+RESTful架构的前后端分离框架</p>
+</blockquote>
+<h2 id="关于项目模板"><a href="#关于项目模板" class="headerlink" title="关于项目模板"></a>关于项目模板</h2><p>项目模板没有选择重新开发，而是直接选用了vue官方模板<a href="https://github.com/vuejs-templates/webpack" target="_blank" rel="external">vuejs-templates/webpack</a>。熟悉的开发者应该都了解，这是一个SPA模板，只有一个入口，而现在我们需要把它改成多入口，并且修改添加一些开发功能，以配合Koa-grace时的开发流程。</p>
+<p>可用的改造方案已经发布，有兴趣的同学可以<strong>先体验基于Koa-grace的多入口项目方案</strong>：</p>
+<p><div class="fix-li-img"></div></p>
+<blockquote>
+<p><img src="https://img.shields.io/github/stars/Thunf/grace-vue-webpack-boilerplate.svg?label=%E2%98%85" alt=""> <strong><a href="https://github.com/Thunf/grace-vue-webpack-boilerplate" target="_blank" rel="external">Grace-vue-webpack-boilerplate</a> — </strong>基于Koa-grace的多入口Vue@2.x项目构建方案 🚀</p>
+</blockquote>
+<p>关于官方模板，就不再分享学习的过程，下面仅讨论改造过程中<strong>遇到的问题</strong>和<strong>实施方案的理由</strong>。</p>
+<h2 id="关于目录结构"><a href="#关于目录结构" class="headerlink" title="关于目录结构"></a>关于目录结构</h2><p>由于模板是为了基于Koa-grace的项目而设计，所以在目录结构上需保持基本的<a href="https://github.com/xiongwilee/koa-grace#目录结构-1" target="_blank" rel="external">Koa-grace项目结构</a>。<br>以下列举了项目中关键文件夹及文件的结构关系，仅供参考。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── package.json        // 项目依赖</div><div class="line">├── node_modules</div><div class="line">│</div><div class="line">├── mock                // mock数据文件</div><div class="line">├── controller          // node层路由目录</div><div class="line">│   ├── defaultCtrl.js</div><div class="line">│   └── home.js</div><div class="line">│</div><div class="line">├── views               // 静态模板源码目录</div><div class="line">├── static              // 静态资源源码目录</div><div class="line">│   ├── image</div><div class="line">│   ├── fonts</div><div class="line">│   ├── css</div><div class="line">│   └── js</div><div class="line">│</div><div class="line">├── build               // 编译脚本目录，本次重点改造</div><div class="line">│   └── config          // 项目配置，供编译过程</div><div class="line">└── vues                // 源码目录，下属文件夹将视作独立的页面入口，‘_’开头的文件夹将被忽略</div><div class="line">    ├── _components     // 组件库，‘_’开头时将不会被作为入口</div><div class="line">    ├── demo            // /demo页入口</div><div class="line">    └── home            // /home页入口</div><div class="line">        ├── index.js</div><div class="line">        ├── index.vue</div><div class="line">        └── router.js</div></pre></td></tr></table></figure>
+<h2 id="关于多入口（Multiple-Entry）"><a href="#关于多入口（Multiple-Entry）" class="headerlink" title="关于多入口（Multiple Entry）"></a>关于多入口（Multiple Entry）</h2><p>调整完文件结构，下面要解决的事情就是，在原有模板的基础上改造多入口方案。<br>其实这一步很简单，只需拓展webpack配置文件中entry的获取方式即可：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// build/webpack.base.conf.js</span></div><div class="line"><span class="comment">/**</span></div><div class="line"> * [entries 入口合成器]</div><div class="line"> * @param  &#123;object&#125; opt 指定的入口，优先级高于自动抓取入口</div><div class="line"> * @return &#123;object&#125;     返回合成的入口对象</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">entries</span> (<span class="params">opt</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> ens = exec(<span class="string">'cd ./vues &amp;&amp; ls'</span>).split(<span class="string">'\n'</span>).map(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> obj = &#123;&#125;</div><div class="line">    <span class="comment">// 将忽略所有以下划线“_”开头的文件夹</span></div><div class="line">    <span class="keyword">if</span> (!<span class="regexp">/^_[\w-]+$/</span>.test(item)) &#123;</div><div class="line">      obj[item] = <span class="string">'./vues/'</span>+item+<span class="string">'/'</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> obj</div><div class="line">  &#125;)</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.assign.apply(<span class="literal">null</span>, [].concat(ens, opt))</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: entries(&#123;</div><div class="line">    <span class="comment">// 此处可以手动指定其他需打包的页面/文件入口</span></div><div class="line">    common: [</div><div class="line">      <span class="string">'./static/css/common/reset.less'</span>,</div><div class="line">      <span class="string">'./static/css/common/index.less'</span>,</div><div class="line">      <span class="string">'./static/js/common/hello.js'</span>,</div><div class="line">    ]</div><div class="line">  &#125;),</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上代码效果相当于：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">home</span>: <span class="string">'./vues/home/index.js'</span>,</div><div class="line">    <span class="attr">demo</span>: <span class="string">'./vues/demo/index.js'</span>,</div><div class="line">    <span class="attr">common</span>: [</div><div class="line">      <span class="string">'./static/css/common/reset.less'</span>,</div><div class="line">      <span class="string">'./static/css/common/index.less'</span>,</div><div class="line">      <span class="string">'./static/js/common/hello.js'</span>,</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>对于多入口项目，<strong>避免了手工更新入口的麻烦，在源码目录中创建入口文件夹并添加源码文件</strong>即可。<br>以上就完成了入口的改造，但这样还无法将文件按需要的目录结构产出，所以还需要调整产出配置。</p>
+<h2 id="关于文件产出（Files-Output）"><a href="#关于文件产出（Files-Output）" class="headerlink" title="关于文件产出（Files Output）"></a>关于文件产出（Files Output）</h2><h3 id="产出规则及需求"><a href="#产出规则及需求" class="headerlink" title="产出规则及需求"></a>产出规则及需求</h3><p>按照项目结构，整理文件产出的需求：</p>
+<ul>
+<li>js<ul>
+<li>文件：编译后文件名应为build.js</li>
+<li>路径：需输出到static/js下，并存放于入口名称的文件夹内，如：static/js/home/build.js</li>
+</ul>
+</li>
+<li>css<ul>
+<li>文件：规则同上，如：build.css</li>
+<li>路径：规则同上，如：static/css/home/build.css</li>
+</ul>
+</li>
+<li>html<ul>
+<li>文件：产出文件名应为inde.html</li>
+<li>路径：需输出到views/下，如：views/home/index.html</li>
+</ul>
+</li>
+</ul>
+<p><strong>改造时直接进行了webpack.prod.conf的全功能配置</strong>，webpack.dev.conf进行简化即可（开发阶段无需分离css、压缩代码、生成map、抽取公共依赖等步骤）。</p>
+<p>通过查看原项目模板的编译流程可以了解：</p>
+<ul>
+<li>js：作为entry配置，output直接影响输出路径及文件名</li>
+<li>css：entry中配置的部分同上，由vue文件中抽离的部分则需要插件<a href="https://webpack.js.org/plugins/extract-text-webpack-plugin/" target="_blank" rel="external">ExtractTextPlugin</a>抽离</li>
+<li>html：需要插件<a href="https://webpack.js.org/plugins/html-webpack-plugin/" target="_blank" rel="external">HtmlWebpackPlugin</a>配合入口进行产出，可以使用ejs模板</li>
+</ul>
+<h3 id="产出html入口文件"><a href="#产出html入口文件" class="headerlink" title="产出html入口文件"></a>产出html入口文件</h3><p>首先，在webpack文档中可以了解到chunk的概念，它和entry是一一对应的，在多入口项目中尤为重要。</p>
+<blockquote>
+<p>Passing an array of file paths to the entry property creates what is known as a “multi-main entry”. This is useful when you would like to <strong>inject multiple dependent files together</strong> and graph their dependencies <strong>into one “chunk”</strong>.     — <a href="https://webpack.js.org/concepts/entry-points/#single-entry-shorthand-syntax" target="_blank" rel="external">webpack.js.org/entry-points</a></p>
+</blockquote>
+<p>其次，需要先产出可用的HTML文件，才能调试其他静态资源的加载。由于多入口化，HTML在产出时需要按chunk进行输出，才能保证对应入口的编译文件引用到对应的HTML中。因此需要按entry初始化对应的HtmlWebpackPlugin：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// build/webpack.prod.conf.js</span></div><div class="line"><span class="keyword">var</span> webpackConfig = merge(utils.setEntrys(baseWebpackConfig), &#123;</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// build/util.js</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setEntrys</span> (<span class="params">conf</span>) </span>&#123;</div><div class="line">  ...</div><div class="line">  var htmlConfig = &#123;</div><div class="line">    <span class="comment">// 压缩HTML选项，dev时不压缩</span></div><div class="line">    minify: &#123;</div><div class="line">      <span class="attr">removeComments</span>: isNotDev,</div><div class="line">      <span class="attr">collapseWhitespace</span>: isNotDev,</div><div class="line">      <span class="attr">removeAttributeQuotes</span>: isNotDev</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">var</span> entries = <span class="built_in">Object</span>.keys(conf.entry)</div><div class="line">  entries.map(<span class="function"><span class="keyword">function</span>(<span class="params">ent</span>) </span>&#123;</div><div class="line">    ...</div><div class="line">    <span class="comment">// 根据entry添加新插件到plugins中</span></div><div class="line">    conf.plugins.push(<span class="keyword">new</span> HtmlWebpackPlugin(<span class="built_in">Object</span>.assign(&#123;</div><div class="line">      <span class="comment">// HTML输出地址，形如：/Users/thunf/fe/server/app/demo/views/home/index.html</span></div><div class="line">      filename: <span class="string">`<span class="subst">$&#123;path.resolve(config.base.outputRoot, <span class="string">'views'</span>)&#125;</span>/<span class="subst">$&#123;ent&#125;</span>/index.html`</span>,</div><div class="line">      <span class="comment">// 允许引用的chunk，包含本身及公共部分</span></div><div class="line">      chunks: [ent, <span class="string">'vendor'</span>, <span class="string">'manifest'</span>, <span class="string">'common'</span>],</div><div class="line">      <span class="comment">// 模板路径，形如：/Users/thunf/fe/server/app/demo/views/_common/_template.ejs</span></div><div class="line">      template: path.resolve(projectRoot, <span class="string">'views/_common/_template.ejs'</span>),</div><div class="line">      <span class="comment">// 自动插入静态资源，由于结合使用了Koa-grace在Node预渲染HTML的功能，所以关闭该功能</span></div><div class="line">      inject: <span class="literal">false</span>,</div><div class="line">      <span class="comment">// Chunks排序规则</span></div><div class="line">      chunksSortMode: <span class="string">'dependency'</span></div><div class="line">    &#125;, htmlConfig)))</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">return</span> conf;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>现在，我们可以通过Koa-grace提供的服务来打开对应的页面了，但是页面中的静态资源链接还存在问题。</p>
+<h3 id="产出js-css静态资源"><a href="#产出js-css静态资源" class="headerlink" title="产出js/css静态资源"></a>产出js/css静态资源</h3><p>此时需要配置输出的参数<code>output</code>，参考webpack文档（<a href="https://webpack.js.org/configuration/output/" target="_blank" rel="external">webpack.js.org/output</a> | <a href="https://doc.webpack-china.org/configuration/output/" target="_blank" rel="external">webpack-china.org/output</a>），可以查看output的说明和配置，其中本次需要使用的参数及有效说明如下：</p>
+<blockquote>
+<p><a href="https://webpack.js.org/configuration/output/#output-filename" target="_blank" rel="external">output.filename</a>: This option <strong>determines the name</strong> of each output bundle.<br><a href="https://webpack.js.org/configuration/output/#output-path" target="_blank" rel="external">output.path</a>: The output directory as an <strong>absolute</strong> path.<br><a href="https://webpack.js.org/configuration/output/#output-publicpath" target="_blank" rel="external">output.publicPath</a>: This option specifies the <strong>public URL</strong> of the output directory when referenced in a browser.</p>
+</blockquote>
+<p>简单来说，就是：</p>
+<ul>
+<li>output.filename：决定产出文件的名称和后缀</li>
+<li>output.path：影响文件输出的绝对位置（本机输出文件夹的绝对路径）</li>
+<li>output.publicPath：决定资源在浏览器中加载的路径（比如添加CDN、指定公开URL）</li>
+</ul>
+<p>假设我们需要在home页产出的html中生成<code>/demo/static/js/home/build.js?v=12345</code>的资源链接，对应以上规则有：</p>
+<ul>
+<li>output.filename：<strong><code>static/js/home/build.js?v=12345</code></strong></li>
+<li>output.path：<code>/Users/thunf/fe/server/app/demo</code><ul>
+<li>此路径为本地产出目录<strong>绝对地址</strong>，只影响本地产出目录，不影响html中输出的链接</li>
+</ul>
+</li>
+<li>output.publicPath：<strong><code>/demo/</code></strong><ul>
+<li>在html输出时，会直接<strong>添加到filename前</strong>，生成完整链接</li>
+<li><strong>将影响其他所有在html中引用的资源链接</strong></li>
+</ul>
+</li>
+</ul>
+<p>于是output应按以上规则配置，实际代码中<strong>复用了路径配置及拼合路径的方法</strong>，此处就不再进行代码分析。感兴趣的同学可以依次查看如下文件：<a href="https://github.com/Thunf/grace-vue-webpack-boilerplate/blob/master/build/webpack.prod.conf.js#L21" target="_blank" rel="external">webpack.prod.conf.js#output</a>、<a href="https://github.com/Thunf/grace-vue-webpack-boilerplate/blob/master/build/utils.js#L6" target="_blank" rel="external">utils.js#assetsPath</a>、<a href="https://github.com/Thunf/grace-vue-webpack-boilerplate/blob/master/build/config/index.js" target="_blank" rel="external">config/index.js#buildConf</a></p>
+<h3 id="文件加戳：Query-or-fileName"><a href="#文件加戳：Query-or-fileName" class="headerlink" title="文件加戳：Query or fileName"></a>文件加戳：Query or fileName</h3><p>关于文件加戳的问题，为什么我们选择了<code>build.js?v=12345</code>，而不是<code>build.12345.js</code>，是出于以下考虑的：<br>1、每次改动build都会产出新文件，长久以往会导致线上代码版本过多<br>2、上线仓储将越来越大，并且不易清理</p>
+<p>但实际应用上，Query戳对比fileName戳也有问题存在，比如<br>1、无法有效利用CDN组合加速文件<br>2、无法存在多版本</p>
+<p>但目前阶段根据业务需求，暂时足够使用，若有需要更改加戳方式的需求，只需在上述<code>output.filename</code>处将文件命名方式进行调整即可，此处不再累述。</p>
+<h3 id="其他资源路径问题"><a href="#其他资源路径问题" class="headerlink" title="其他资源路径问题"></a>其他资源路径问题</h3><p>项目模板中目前还有图片资源及字体资源未提及，该两种资源在原模板中已存在loader及引用方式，下面描述碰到的问题及解决方法：</p>
+<h4 id="生成图片引用路径"><a href="#生成图片引用路径" class="headerlink" title="生成图片引用路径"></a>生成图片引用路径</h4><p>由于在处理图片资源时，并没有很好的理解<code>output.publicPath</code>的作用，没有使用形如<code>/demo/</code>的<strong>相对于服务模式(server-relative)</strong>，导致始终无法产出期望的文件路径。后来在webpack文档中找到具体的说明，才完成配置。</p>
+<blockquote>
+<p>The value of the option is prefixed to every URL created by the runtime or loaders. Because of this <strong>the value of this option ends with /</strong> in most cases. — <a href="https://webpack.js.org/configuration/output/#output-publicpath" target="_blank" rel="external">output.publicPath</a></p>
+</blockquote>
+<h4 id="图片资源引用方式"><a href="#图片资源引用方式" class="headerlink" title="图片资源引用方式"></a>图片资源引用方式</h4><p>正常情况下，在.vue文件中可以使用相对路径来引用图片资源，但通过<strong>配置别名</strong>及<code>~alias</code>的引用方式将<strong>更简洁</strong>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- Same effect, but alias write less --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"logo"</span> <span class="attr">src</span>=<span class="string">"../../static/image/logo-grace.png"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">class</span>=<span class="string">"logo"</span> <span class="attr">src</span>=<span class="string">"~image/logo.png"</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>配置别名alias如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// build/webpack.base.conf.js</span></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  ...</div><div class="line">  resolve: &#123;</div><div class="line">    ...</div><div class="line">    alias: &#123;</div><div class="line">      <span class="string">'static'</span>: resolve(<span class="string">'static'</span>),</div><div class="line">      <span class="string">'image'</span>: resolve(<span class="string">'static/image'</span>),</div><div class="line">      <span class="string">'components'</span>: resolve(<span class="string">'vues/_components'</span>)</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>.vue文件中其他静态资源引用同理</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- JS/Component --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">import</span> Grace <span class="keyword">from</span> <span class="string">'components/grace.vue'</span></div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">...</div><div class="line"><span class="comment">&lt;!-- CSS/LESS --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"less"</span>&gt;</span><span class="undefined"></span></div><div class="line">@import '~static/fonts/iconfont.less';</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="关于提升开发效率"><a href="#关于提升开发效率" class="headerlink" title="关于提升开发效率"></a>关于提升开发效率</h2><p>考虑实际开发中，有需要进行诸如本地配置、打开浏览器、创建新文件等重复性操作的场景。<br>为了进一步<del>懒癌发作</del><strong>提升开发效率</strong>，特别增加了一些增强功能，目前刚开始进行，欢迎抛出宝贵的建议。</p>
+<h3 id="自动配置开发环境"><a href="#自动配置开发环境" class="headerlink" title="自动配置开发环境"></a>自动配置开发环境</h3><p>由于Koa-grace作为前后端分离框架，允许<strong>同时解析多域名请求到多项目</strong>，故以往在切换项目开发时，需要手动更改server.json配置及重启服务（官方吐槽：好烦啊喂）。那么既然项目启动需要单独<code>npm run dev</code>一次，为何不考虑将项目配置（开发环境）交由项目本身进行呢？</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// build/check-server.js</span></div><div class="line"><span class="comment">// 匹配grace下配置目录</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">matchServerJson</span>(<span class="params">graceRoot</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> glob.sync(path.join(graceRoot, <span class="string">'*/config/main.development.js'</span>)) || []</div><div class="line">&#125;</div><div class="line">...</div><div class="line"><span class="comment">// 匹配grace目录</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">findServerFolder</span>(<span class="params">graceRoot, scb, ecb</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> confMatch = matchServerJson(graceRoot)</div><div class="line">  ;(<span class="number">1</span> === confMatch.length) ? callback(scb)(&#123;</div><div class="line">    <span class="attr">serverRoot</span>: path.resolve(confMatch[<span class="number">0</span>], <span class="string">'../..'</span>),</div><div class="line">    <span class="attr">serverConf</span>: confMatch[<span class="number">0</span>]</div><div class="line">  &#125;) : callback(ecb)(confMatch.length)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>于是本着尽可能<del>懒癌发作</del><strong>让系统自己找</strong>的思想，通过引入glob进行关键文件的路径匹配，来验证当前项目是否符合Koa-grace目录规范，顺便解析出当前Koa-grace启动的文件夹（default: server）名称，并添加到config。</p>
+<p>有了server的路径，就可以按路径读取配置文件信息了，顺便也可以验证并添加本项目的配置：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// build/open-browser.js</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lookForHost</span>(<span class="params">hosts, autoOpenBrowser</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.keys(hosts).filter(<span class="function"><span class="keyword">function</span>(<span class="params">key, value</span>) </span>&#123;</div><div class="line">    <span class="comment">// if vhost-matched, use the match one</span></div><div class="line">    <span class="keyword">return</span> hosts[key] === config.base.moduleName</div><div class="line">  &#125;)[<span class="number">0</span>] || (autoOpenBrowser &amp;&amp; writeHostConf(&#123;</div><div class="line">    <span class="comment">// if auto-open &amp; no-vhost-matched, auto set</span></div><div class="line">    <span class="string">"127.0.0.1"</span>: config.base.moduleName</div><div class="line">  &#125;) || [</div><div class="line">    <span class="comment">// if no-auto-open &amp; no-vhost-matched, to tip</span></div><div class="line">    <span class="string">'&gt; Maybe you have not set vhost to this app: '</span> + chalk.cyan(config.base.moduleName),</div><div class="line">    <span class="string">'&gt; Please set '</span> + chalk.magenta(<span class="string">'vhost'</span>) + <span class="string">' in '</span> + chalk.magenta(<span class="string">'/server/config/server.json'</span>) + <span class="string">' like this:'</span>,</div><div class="line">    <span class="string">'  '</span> + chalk.green( <span class="built_in">JSON</span>.stringify(&#123;</div><div class="line">      <span class="attr">merge</span>: &#123;<span class="attr">vhost</span>: &#123;<span class="string">"127.0.0.1"</span>: config.base.moduleName &#125; &#125;</div><div class="line">    &#125;, <span class="literal">null</span>, <span class="number">2</span>).replace(<span class="regexp">/\n/g</span>, <span class="string">'\n    '</span>) ), <span class="string">''</span>, <span class="string">''</span></div><div class="line">  ])</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此处代码实现风格比较诡异，其实做了3种情况的判断：</p>
+<ul>
+<li>如果匹配到本项目的vhost配置，那就使用该host</li>
+<li>如果未匹配到，且允许自动打开浏览器，就<strong>写入默认配置<code>{127.0.0.1: moduleName}</code></strong></li>
+<li>如果未匹配到，且不允许自动打开浏览器，就发起提示</li>
+</ul>
+<h3 id="自动打开项目首页"><a href="#自动打开项目首页" class="headerlink" title="自动打开项目首页"></a>自动打开项目首页</h3><p>其实这个功能在原项目模板中已经存在，只不过原项目自带server并且只有一个入口，启动时只需打开固定的首页即可。<br>当变成多入口项目后，就需要面临新的问题：</p>
+<ul>
+<li>Koa-grace启动的host及端口不确定</li>
+<li>首页路径不确定</li>
+</ul>
+<p>第一个问题，通过上述方案已经可以解决。<br>第二个问题，暂时需在config配置<code>autoOpenPage</code>，需在配置文件中添加如下配置，特此说明。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// build/config/index.js</span></div><div class="line">devConf = &#123;</div><div class="line">  ...</div><div class="line">  autoOpenBrowser: <span class="literal">true</span>, <span class="comment">// 是否自动打开浏览器</span></div><div class="line">  autoOpenDelay: <span class="number">2000</span>,   <span class="comment">// 延迟多少ms打开浏览器，koa-grace服务检测到路由文件变化会自动重启</span></div><div class="line">  autoOpenPage: <span class="string">'home'</span>,  <span class="comment">// 自动打开时的项目入口（路由）</span></div><div class="line">  ...</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="关于ESLint"><a href="#关于ESLint" class="headerlink" title="关于ESLint"></a>关于ESLint</h2><h3 id="检查你的代码"><a href="#检查你的代码" class="headerlink" title="检查你的代码"></a>检查你的代码</h3><blockquote>
+<p>Code <a href="https://en.wikipedia.org/wiki/Lint_(software)" target="_blank" rel="external">linting</a> is a type of static analysis.<br>ESLint is designed to have all rules completely pluggable. — <a href="http://eslint.org/docs/about/" target="_blank" rel="external">eslint.org</a></p>
+</blockquote>
+<p>很早之前就了解过这个玩意了，曾经组里也有几次技术调研涉及这个，一直没正式投入使用过，也就自己搞一搞。</p>
+<p>其实开始使用时也是挺蛋疼的（模板自带配置使用标准：<a href="https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style" target="_blank" rel="external">feross/standard</a>，感觉要求超级严格，比如“<code>{</code>”后换行并留一行空格都要error），但耐心看一下提示，就能知道格式哪里不标准，然后逐步就习惯了（避免写的时候太飘逸）。</p>
+<blockquote>
+<p>This module helps hold our code to a high standard of quality.<br>This module ensures that new contributors follow some basic style standards. — <a href="http://standardjs.com/#but-this-isnt-a-real-web-standard" target="_blank" rel="external">feross/standard</a></p>
+</blockquote>
+<p>这里吐个槽，<strong>如果团队协作开发一个仓储，图快而不加以规范，简直就是给维护者挖坑</strong>（版本越老坑越大，自己深有体会，靠嘴遁要求统一风格，真心没用，什么诡异的代码风格都有）。</p>
+<h3 id="翻一翻文档"><a href="#翻一翻文档" class="headerlink" title="翻一翻文档"></a>翻一翻文档</h3><p>某：eslint限制太严格<br>我：嗯，确实严格，习惯就好<br>某：能不能改成只有提示，但是不影响编译流程的<br>我：看看文档</p>
+<ul>
+<li>eslint-loader: <a href="https://github.com/MoOx/eslint-loader" target="_blank" rel="external">github.com/MoOx/eslint-loader</a></li>
+<li>eslint: <ul>
+<li>en: <a href="http://eslint.org/docs/user-guide/" target="_blank" rel="external">eslint.org/docs</a></li>
+<li>zh: <a href="http://eslint.cn/docs/user-guide/" target="_blank" rel="external">eslint.cn/docs</a></li>
+</ul>
+</li>
+</ul>
+<p>研究了一下俩文档，理论上可以有2个方案实现<strong>只提示而不影响编译流程</strong>，但是似乎又各自有问题，以下是这两种方案。</p>
+<h4 id="配置extends-rules"><a href="#配置extends-rules" class="headerlink" title="配置extends/rules"></a>配置extends/rules</h4><p>在ESlint的官方文档里可以了解到 <a href="http://eslint.org/docs/user-guide/configuring#extending-configuration-files" target="_blank" rel="external">configuring#extending-configuration-files</a>：</p>
+<blockquote>
+<ul>
+<li><strong>extends</strong>:<ul>
+<li>a string that specifies a configuration</li>
+<li>an array of strings: each additional configuration extends the preceding configurations</li>
+</ul>
+</li>
+<li><strong>rules</strong>: which rules are enabled and at what error level<ul>
+<li>enable additional rules</li>
+<li>change an inherited rule’s severity without changing its options</li>
+<li>override options for rules from base configurations</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<p>接下来通过查看 feross/standard 的配置文件 <a href="https://github.com/feross/eslint-config-standard/blob/master/eslintrc.json" target="_blank" rel="external">eslint-config-standard/eslintrc.json</a> 可以得知，这个标准一言不合就error，而且<strong>全部都是error</strong>（没办法，就是这么任性）。不过 feross/standard 的作者也这么表态了：</p>
+<blockquote>
+<p>The word “standard” has more meanings than just “web standard” :-)<br>— <a href="http://standardjs.com/#but-this-isnt-a-real-web-standard" target="_blank" rel="external">FAQ: But this isn’t a real web standard!</a></p>
+</blockquote>
+<p>那么方案也就显而易见：</p>
+<ul>
+<li>找一份完全符合心意的标准（看起来比较难）</li>
+<li>写个插件，然后<strong>自己定义规则</strong>（<a href="http://eslint.org/docs/rules/" target="_blank" rel="external">eslint.org/docs/rules</a> | <a href="http://eslint.cn/docs/rules/" target="_blank" rel="external">eslint.cn/docs/rules</a>），添加到extends<ul>
+<li>比如强制缩进就给error，不关心是否空行就给warning，随心所欲so easy</li>
+</ul>
+</li>
+<li>在.eslintrc中，通过<strong>添加rules属性，强行覆盖</strong>现有extends提供的rules</li>
+</ul>
+<p>优缺点也一目了然：</p>
+<ul>
+<li>优：配置化并完全可以自定义，完全可拔插，可持续维护；</li>
+<li>缺：想找到一个完全符合心意的标准几乎不可能（若自己写规则，一般人怕是没这心情，虽然规则不是很多，哈）</li>
+</ul>
+<h4 id="配置failOnWarning"><a href="#配置failOnWarning" class="headerlink" title="配置failOnWarning"></a>配置failOnWarning</h4><p>当然先讲一句，我其实<strong>不推荐</strong>这种配置，原因在后面说。</p>
+<p>首先在eslint-loader文档里，找到这么一句话：</p>
+<blockquote>
+<p>So even ESLint warnings will fail the build. — <a href="https://github.com/MoOx/eslint-loader#noerrorsplugin" target="_blank" rel="external">eslint-loader#noerrorsplugin</a></p>
+</blockquote>
+<p>即使是warning也会阻断build过程。但有趣的是，option配置可以改变提示行为，默认值都是false：</p>
+<blockquote>
+<p><strong>emitError</strong>: Loader will always return errors if this option is set to true.<br><strong>emitWarning</strong>: Loader will always return warnings if option is set to true.<br><strong>failOnWarning</strong>: Loader will cause the module build to fail if there are any eslint warnings.<br><strong>failOnError</strong>: Loader will cause the module build to fail if there are any eslint errors.</p>
+</blockquote>
+<p>以我的理解，eslint-loader应该是在preLoad阶段，以报错的形式影响webpack编译进程，并显示提示信息。<br>所以在<a href="https://github.com/MoOx/eslint-loader/blob/master/index.js#L100" target="_blank" rel="external">eslint-loader的源码</a>里，找到了这么个地方：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// default behavior: emit error only if we have errors</span></div><div class="line"><span class="keyword">var</span> emitter = res.errorCount ? webpack.emitError : webpack.emitWarning</div><div class="line"></div><div class="line"><span class="comment">// force emitError or emitWarning if user want this</span></div><div class="line"><span class="keyword">if</span> (config.emitError) &#123;</div><div class="line">  emitter = webpack.emitError</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span> <span class="keyword">if</span> (config.emitWarning) &#123;</div><div class="line">  emitter = webpack.emitWarning</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">if</span> (emitter) &#123;</div><div class="line">  emitter(messages)</div><div class="line">  <span class="keyword">if</span> (config.failOnError &amp;&amp; res.errorCount) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Module failed because of a eslint error.\n"</span></div><div class="line">      + messages)</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (config.failOnWarning &amp;&amp; res.warningCount) &#123;</div><div class="line">    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Module failed because of a eslint warning.\n"</span></div><div class="line">      + messages)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码表明，正常流程上的warning和error是调用webpack自带的方法来emit的，只不过我们可以通过配置：<br>1.emitError/emitWarning：取消default behavior，使emitter强制变成error/warning类型<br>2.failOnWarning/failOnError：抛出一个Error来打断webpack的build过程</p>
+<p>那么问题来了，默认的配置<code>{emitError: false, failOnError: false}</code>，只是由webpack进行了一次emitError，并没有实际抛出一个Error，那实际上应该<strong>不会 cause the module build to fail</strong>才对？但实际开发时，比如为什么“<code>{</code>”后换行并留一行空格，不只触发了规则<a href="http://eslint.org/docs/rules/no-trailing-spaces" target="_blank" rel="external">no-trailing-spaces</a>的error，还导致webpack没有实际build出新文件呢？</p>
+<p>那么基本上可以断定这和webpack.emitError有关系了，来看一下webpack的源码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack/lib/NormalModule.js</span></div><div class="line">  ...</div><div class="line">    emitWarning: <span class="function"><span class="keyword">function</span>(<span class="params">warning</span>) </span>&#123;</div><div class="line">      <span class="built_in">module</span>.warnings.push(<span class="keyword">new</span> ModuleWarning(<span class="built_in">module</span>, warning));</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">emitError</span>: <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;</div><div class="line">      <span class="built_in">module</span>.errors.push(<span class="keyword">new</span> ModuleError(<span class="built_in">module</span>, error));</div><div class="line">    &#125;,</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>这里API功能是收集error和warning，那么理论上还有地方，会根据error和warning数量决定是否可以继续编译。<br>中间调试的过程就不累述，最终在webpack的Compiler.js中先找到了判定emit并return的地方：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack/lib/Compiler.js</span></div><div class="line">  ...</div><div class="line">  if(self.compiler.applyPluginsBailResult(<span class="string">"should-emit"</span>, compilation) === <span class="literal">false</span>) &#123;</div><div class="line">    <span class="keyword">return</span> self._done(<span class="literal">null</span>, compilation);</div><div class="line">  &#125;</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>经过寻找<code>should-emit</code>在哪里触发，然后找到在NoEmitOnErrorsPlugin中，处理errors数量的逻辑：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// webpack/lib/NoEmitOnErrorsPlugin.js</span></div><div class="line">  ...</div><div class="line">  compiler.plugin(<span class="string">"should-emit"</span>, (compilation) =&gt; &#123;</div><div class="line">    <span class="keyword">if</span>(compilation.errors.length &gt; <span class="number">0</span>)</div><div class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</div><div class="line">  &#125;);</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>此处可以看出，若errors中存在error，NoEmitOnErrorsPlugin会返回false，而对warning没有处理。这一行为会导致Compiler.js中的compile流程被中断，当然就不会有文件产出啦。</p>
+<p>那么为了验证这个逻辑，将NoEmitOnErrorsPlugin从项目build/webpack.dev.conf.js中注释掉之后，带着已知的格式问题（如多个空行，不影响实际编译），仍然可以编译出新文件，有兴趣的小伙伴可以自行尝试。当然这个插件在dev环境开发时还会影响其他loader的表现，不建议砍掉它。</p>
+<p>那么回到我们的问题上来，通过强制eslint触发emitWarning而不是emitError，即在eslint的option中配置<code>{emitWarning: true}</code>，<strong>格式检测规则（编译无关的规则）</strong>就不会终止webpack编译产出文件了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&#123;</div><div class="line">  <span class="attr">test</span>: <span class="regexp">/\.(js|vue)$/</span>,</div><div class="line">  <span class="attr">loader</span>: <span class="string">'eslint-loader'</span>,</div><div class="line">  ...</div><div class="line">  options: &#123;</div><div class="line">    ...</div><div class="line">    <span class="comment">/* ======= begin ====== */</span> </div><div class="line">    emitWarning: <span class="literal">true</span></div><div class="line">    <span class="comment">/* =======  end  ====== */</span> </div><div class="line">  &#125;</div><div class="line">&#125;,</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>当然如果是会引起编译的错误，在接下来的编译中该断还是得断，还有可能产生多次log（毕竟没有被eslint在preLoad过程中拦下来，eslint提示完，后面的loader还会继续提示，比如重复显示error，调试过程简直最强大脑有木有）</p>
+<p>所以尽管可以实现<strong>只提示而不影响编译流程</strong>的目标，但又带来了新问题，虽然简单快捷但并不优雅，也没有让eslint发挥出什么作用（对非强迫症患者，仅提示还是拦不住的各种诡异风格的）。<br><strong>这就是不推荐的理由。</strong>总之blabla这么多，就是想说下面这句话。</p>
+<h3 id="不想用就别硬用"><a href="#不想用就别硬用" class="headerlink" title="不想用就别硬用"></a>不想用就别硬用</h3><p>实在不能接受，那就干掉吧，推荐下面的方式。</p>
+<ul>
+<li>1、<a href="https://github.com/Thunf/grace-vue-webpack-boilerplate#fork-it-and-make-your-own" target="_blank" rel="external">Fork It And Make Your Own</a></li>
+<li><p>2、Comment out or delete the codes below (the part between comments):</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// build/webpack.base.conf.js</span></div><div class="line">...</div><div class="line">module: &#123;</div><div class="line">  <span class="attr">rules</span>: [</div><div class="line">    <span class="comment">/* ==================== eslint =================== */</span> </div><div class="line">    <span class="comment">/* If eslint makes you mad, just delete these code */</span></div><div class="line">    &#123;</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.(js|vue)$/</span>,</div><div class="line">      <span class="attr">loader</span>: <span class="string">'eslint-loader'</span>,</div><div class="line">      <span class="attr">enforce</span>: <span class="string">"pre"</span>,</div><div class="line">      <span class="attr">include</span>: [resolve(<span class="string">'vues'</span>), resolve(<span class="string">'test'</span>)],</div><div class="line">      <span class="attr">options</span>: &#123;</div><div class="line">        <span class="attr">formatter</span>: <span class="built_in">require</span>(<span class="string">'eslint-friendly-formatter'</span>)</div><div class="line">      &#125;</div><div class="line">    &#125;,</div><div class="line">    <span class="comment">/* ================== eslint end ================= */</span></div><div class="line">    ...</div><div class="line">  ]</div><div class="line">  ...</div><div class="line">&#125;</div><div class="line">...</div></pre></td></tr></table></figure>
+</li>
+<li><p>3、Enjoy your code : )</p>
+</li>
+</ul>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><h3 id="报错信息不显示"><a href="#报错信息不显示" class="headerlink" title="报错信息不显示"></a>报错信息不显示</h3><p>有小伙伴反应这一现象，如下图所示。其实这跟个人使用的terminal配色方案有关（webpack显示错误代码的颜色，正好跟terminal的背景色相同，就看不到了嘛），<a href="#avoidTerminalColorGray">查看解决方案</a>。</p>
+<p><img src="http://7xrhcw.com1.z0.glb.clouddn.com/eslint-terminal.png" alt="problem: terminal-color-gray"></p>
+<p>经过调试，发现这种提示是由<a href="https://github.com/royriojas/eslint-friendly-formatter/blob/master/index.js#L35" target="_blank" rel="external">eslint-friendly-formatter</a>打印出来的，根据源码显示：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">var parseBoolEnvVar = <span class="function"><span class="keyword">function</span>(<span class="params">varName</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> env = process.env || &#123; &#125;;</div><div class="line">  <span class="keyword">return</span> env[varName] === <span class="string">'true'</span>;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> subtleLog = <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> parseBoolEnvVar(<span class="string">'EFF_NO_GRAY'</span>) ? args : chalk.gray(args);</div><div class="line">&#125;;</div><div class="line">...</div></pre></td></tr></table></figure>
+<h4 id="avoidTerminalColorGray"><a href="#avoidTerminalColorGray" class="headerlink" title="avoidTerminalColorGray"></a>avoidTerminalColorGray</h4><p>只需配置<code>process.env.EFF_NO_GRAY = true</code>即可阻止使用chalk.gray显示文字。<br>那么这个配置也将<strong>加入项目的配置文件，如下配置</strong>即可</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// build/config/index.js</span></div><div class="line">  ...</div><div class="line">  devConf = &#123;</div><div class="line">    ...</div><div class="line">    avoidTerminalColorGray: <span class="literal">true</span></div><div class="line">  &#125;;</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<h2 id="NEXT"><a href="#NEXT" class="headerlink" title="NEXT"></a>NEXT</h2><h3 id="抽取代码（TODO）"><a href="#抽取代码（TODO）" class="headerlink" title="抽取代码（TODO）"></a>抽取代码（TODO）</h3><p>有时间将抽离<strong>提升开发效率</strong>部分的逻辑为插件，以帮助更多其他技术栈的Koa-grace项目更好的提升开发体验。</p>
+<h3 id="自动创建新入口（TODO）"><a href="#自动创建新入口（TODO）" class="headerlink" title="自动创建新入口（TODO）"></a>自动创建新入口（TODO）</h3><p>已经有同学提出需要自动创建新入口的脚本及命令，这个近期也会提供（每次添加新入口要创建好几个文件夹及文件也是麻烦）</p>
+<h3 id="热加载（TODO）"><a href="#热加载（TODO）" class="headerlink" title="热加载（TODO）"></a>热加载（TODO）</h3><p>该功能在原模板中存在，但升级多入口后，server将由Koa-grace接管，目前已移除该部分代码，下一步考虑添加Koa-grace的中间件，来配合完成vue项目的热加载方案</p>
+<h3 id="需要建议or意见"><a href="#需要建议or意见" class="headerlink" title="需要建议or意见"></a>需要建议or意见</h3><p>欢迎试用 &amp; Stars</p>
+<style>
+  .fix-li-img + p + ul img{
+    display: inline-block;
+    vertical-align: sub;
+  }
+</style>
+
+<p><div class="fix-li-img"></div></p>
+<ul>
+<li><img src="https://img.shields.io/github/stars/xiongwilee/koa-grace.svg?label=%E2%98%85" alt=""> <strong>全新的基于Koa@v2.x的MVC+RESTful架构的前后端分离框架 <a href="https://github.com/xiongwilee/koa-grace" target="_blank" rel="external">Koa-grace@2.0</a></strong></li>
+<li><img src="https://img.shields.io/github/stars/Thunf/grace-vue-webpack-boilerplate.svg?label=%E2%98%85" alt=""> <strong>基于Koa-grace的多入口Vue@2.x项目构建方案 🚀 <a href="https://github.com/Thunf/grace-vue-webpack-boilerplate" target="_blank" rel="external">Grace-vue-webpack-boilerplate</a></strong></li>
+</ul>
+<p>如果你有其他项目需要配置Vue@2.x项目多入口方案，也欢迎加入我们的群交流~</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    
+
+            
+    
+        <a href="http://www.thunf.me/2017/02/17/20170217-grace-vue-boilerplate/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://www.thunf.me/2017/02/17/20170217-grace-vue-boilerplate/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2016/12/25/20161225-ali-ar/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">如何优雅的在家抢邻居的红包</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            <section id="side">
+                
+                    
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png" />
+            <h2 id="name">Thunf</h2>
+            <h3 id="title">沉醉不知归路</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
+            <a id="follow" target="_blank" href="https://github.com/thunf/">FOLLOW</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                <a class="profile-link" href="/archives" >
+                    4
+                    <span>文章</span>
+                </a>                
+            </div>
+            <div class="article-info-block">
+                <a class="profile-link" href="/tags" >
+                    8
+                    <span>标签</span>
+                </a>                
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    <td><a href="http://github.com/thunf" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+                
+                
+                    <aside id="sidebar">
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/02/17/20170217-grace-vue-boilerplate/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrhcw.com1.z0.glb.clouddn.com/blog_vue-grace.jpg)" alt="前后端分离之路 - Vue2项目多入口模板改造方案" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-title"><a href="/2017/02/17/20170217-grace-vue-boilerplate/" class="title">前后端分离之路 - Vue2项目多入口模板改造方案</a></p>
+                            <p class="item-date"><time datetime="2017-02-17T13:59:07.000Z" itemprop="datePublished">2017-02-17</time></p>
+                            <p class="item-category"></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/12/25/20161225-ali-ar/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://i1.piimg.com/567571/bbc758140b4b6a69.jpg)" alt="如何优雅的在家抢邻居的红包" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-title"><a href="/2016/12/25/20161225-ali-ar/" class="title">如何优雅的在家抢邻居的红包</a></p>
+                            <p class="item-date"><time datetime="2016-12-25T04:23:18.000Z" itemprop="datePublished">2016-12-25</time></p>
+                            <p class="item-category"></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/03/20160303-blog-resolve-dns/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/72446606.jpg)" alt="把博客托管到github和coding" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-title"><a href="/2016/03/03/20160303-blog-resolve-dns/" class="title">把博客托管到github和coding</a></p>
+                            <p class="item-date"><time datetime="2016-03-03T05:33:03.000Z" itemprop="datePublished">2016-03-03</time></p>
+                            <p class="item-category"></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2016/03/01/20160301-hello-world/" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://7xrhcw.com1.z0.glb.clouddn.com/16-3-4/53950428.jpg)" alt="Hello World" class="thumbnail-image"></span>
+    
+</a>
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-title"><a href="/2016/03/01/20160301-hello-world/" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2016-03-01T08:21:12.000Z" itemprop="datePublished">2016-03-01</time></p>
+                            <p class="item-category"></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">Links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-chevron-up"></div>
+</aside>
+                
+            </section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2017 thunf.me
+            <span id="busuanzi_container_site_pv">已被围观<span id="busuanzi_value_site_pv"></span>次</span>
+            <br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
+            Theme from <a href="https://github.com/Thunf/hexo-theme-icarus" target="_blank">icarus</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'thunf';
+    
+    
+    var disqus_url = 'http://www.thunf.me/2017/02/17/20170217-grace-vue-boilerplate/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+<!-- 不蒜子 -->
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- 百度 -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6fc1b43affd6180387495d5ae9845650";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+    </div>
+</body>
+</html>
