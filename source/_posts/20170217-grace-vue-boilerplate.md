@@ -656,6 +656,8 @@ This module ensures that new contributors follow some basic style standards. ---
 
 如果你有其他项目需要配置Vue@2.x项目多入口方案，也欢迎加入我们的群交流~
 
+![Koa-grace交流群][image_grace-qq]
+
 
 [url_koa2-svg]: https://img.shields.io/github/stars/xiongwilee/koa-grace.svg?label=%E2%98%85
 [url_vue2-svg]: https://img.shields.io/github/stars/Thunf/grace-vue-webpack-boilerplate.svg?label=%E2%98%85
@@ -690,6 +692,6 @@ This module ensures that new contributors follow some basic style standards. ---
 [url_fork]: https://github.com/Thunf/grace-vue-webpack-boilerplate#fork-it-and-make-your-own
 [url_eslint-formatter]: https://github.com/royriojas/eslint-friendly-formatter/blob/master/index.js#L35
 [image_eslint-terminal-color]: http://7xrhcw.com1.z0.glb.clouddn.com/eslint-terminal.png
-
+[image_grace-qq]: http://7xrhcw.com1.z0.glb.clouddn.com/grace-qq.png
 
 
