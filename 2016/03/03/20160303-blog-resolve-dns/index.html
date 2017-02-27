@@ -24,7 +24,7 @@ gitcafe即将合并到coding
 gitcafe即将合并到coding
 …">
 <meta property="og:image" content="http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/72446606.jpg">
-<meta property="og:updated_time" content="2016-07-01T03:04:20.000Z">
+<meta property="og:updated_time" content="2017-02-27T09:22:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="把博客托管到github和coding">
 <meta name="twitter:description" content="要说为什么要这么干，似乎可以找到很多理由：
@@ -197,7 +197,13 @@ gitcafe即将合并到coding
 <p>由于 GitHub Pages(xxx.github.io) 的默认分支为master，为了同步方便，coding也设置page分支为master<br><code>若博客项目没有建在io项目中，则需放在gh-pages分支中方可展示</code></p>
 <p><img src="http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/11136862.jpg" alt="coding上设置page分支为master"></p>
 <p>设置完成后，就可以通过<code>http://用户名.coding.me/项目名</code>直接访问page了<br>尝试：由于<code>用户名==项目名</code>，<code>http://用户名.coding.me/</code>也是可以访问到的</p>
-<p>接下来出现了<code>绑定自定义域名</code>的选项，我填写了自己的域名。但似乎没有向访问thunf.github.io那样会通过CNAME自动跳转到www.thunf.me。<br>此处设置不明白，待明白回来补充（<strong>同求高人指点</strong>）。</p>
+<p>接下来出现了<code>绑定自定义域名</code>的选项，我填写了自己的域名。但似乎没有向访问thunf.github.io那样会通过CNAME自动跳转到www.thunf.me。<br><del>此处设置不明白，待明白回来补充（<strong>同求高人指点</strong>）。</del></p>
+<ul>
+<li>2017-02-27：coding已经可以通过设置<strong>自定义域名</strong>来完成CNAME的功能，例如设置<code>http://thunf.me</code>，访问<code>http://用户名.coding.me/</code>时，将自动跳转到<code>http://thunf.me</code><ul>
+<li>但此举将导致<code>thunf.me</code>域名<strong>无法访问其他github仓储的gh-page页面</strong>，原因是解析到了coding，除非在coding复制一份github的同名仓储以及分支，且每次保持同步push</li>
+</ul>
+</li>
+</ul>
 <h2 id="域名解析"><a href="#域名解析" class="headerlink" title="域名解析"></a>域名解析</h2><p>thunf.me的域名是在阿里云上买的，从选购到设置域名解析什么的一条龙服务，十(不)分(再)方(赘)便(述)。<br>如果是在阿里云上买的域名，那么进入<strong>控制台</strong>，找到<strong>域名列表</strong>，点击域名后面的<strong>解析</strong>进入<strong>域名控制台-解析设置</strong></p>
 <blockquote>
 <p>www 是指域名前带www的可以解析，举栗：www.thunf.me<br>@ 是指前面不带任何主机名也可解析，举栗：thunf.me</p>
