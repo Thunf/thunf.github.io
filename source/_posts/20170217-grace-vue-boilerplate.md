@@ -11,7 +11,7 @@ thumbnail: http://7xrhcw.com1.z0.glb.clouddn.com/blog_vue-grace.jpg
 photo:
 ---
 
-做前后端分离也有一段时间了，业务一直在用Vue@1.x的多入口方案，也一直懒癌发作没搞2.x的版本。适逢最近在等某宝小程序的构建，由于迟迟不定技术方案，只好暂缓先捯饬一下Vue@2.x项目多入口的构建方案。
+做前后端分离也有一段时间了，需要升级一下项目多入口的构建方案到 Vue@2.x。项目模板没有选择重新开发，而是直接选用了 vue 官方模板 vuejs-templates/webpack。现在我们需要把这个 SPA 单入口模板改成多入口，并且修改添加一些开发功能，以配合 Koa-grace 时的开发流程。
 
 <!-- more -->
 
@@ -149,7 +149,7 @@ module.exports = {
   - 文件：规则同上，如：build.css
   - 路径：规则同上，如：static/css/home/build.css
 - html
-  - 文件：产出文件名应为inde.html
+  - 文件：产出文件名应为index.html
   - 路径：需输出到views/下，如：views/home/index.html
 
 **改造时直接进行了webpack.prod.conf的全功能配置**，webpack.dev.conf进行简化即可（开发阶段无需分离css、压缩代码、生成map、抽取公共依赖等步骤）。
@@ -303,7 +303,7 @@ import Grace from 'components/grace.vue'
 ## 关于提升开发效率
 
 考虑实际开发中，有需要进行诸如本地配置、打开浏览器、创建新文件等重复性操作的场景。
-为了进一步~~懒癌发作~~**提升开发效率**，特别增加了一些增强功能，目前刚开始进行，欢迎抛出宝贵的建议。
+为了进一步**提升开发效率**，特别增加了一些增强功能，目前刚开始进行，欢迎抛出宝贵的建议。
 
 ### 自动配置开发环境
 
@@ -326,7 +326,7 @@ function findServerFolder(graceRoot, scb, ecb) {
 }
 ```
 
-于是本着尽可能~~懒癌发作~~**让系统自己找**的思想，通过引入glob进行关键文件的路径匹配，来验证当前项目是否符合Koa-grace目录规范，顺便解析出当前Koa-grace启动的文件夹（default: server）名称，并添加到config。
+于是本着尽可能**让系统自己找**的思想，通过引入glob进行关键文件的路径匹配，来验证当前项目是否符合Koa-grace目录规范，顺便解析出当前Koa-grace启动的文件夹（default: server）名称，并添加到config。
 
 有了server的路径，就可以按路径读取配置文件信息了，顺便也可以验证并添加本项目的配置：
 
