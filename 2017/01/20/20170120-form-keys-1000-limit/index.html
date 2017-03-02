@@ -3,17 +3,18 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Tag: 红包 | Thunf&#39;Blog</title>
+    <title>踩坑parameterLimit - 神秘的1000parse限制 | Thunf&#39;Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="一枚野生前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Thunf'Blog">
-<meta property="og:url" content="//thunf.me/tags/红包/index.html">
+    <meta name="description" content="项目中遇到一个诡异的问题：提交表单时，存在字段的值如[1,2,3,4,…,M,N]，但是在服务端解析到的值却是[1,2,3,…,M]，数据没有损坏，偏偏是最后几个字段的数据神秘消失掉，疯掉…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="踩坑parameterLimit - 神秘的1000parse限制">
+<meta property="og:url" content="//thunf.me/2017/01/20/20170120-form-keys-1000-limit/index.html">
 <meta property="og:site_name" content="Thunf'Blog">
-<meta property="og:description" content="一枚野生前端">
+<meta property="og:description" content="项目中遇到一个诡异的问题：提交表单时，存在字段的值如[1,2,3,4,…,M,N]，但是在服务端解析到的值却是[1,2,3,…,M]，数据没有损坏，偏偏是最后几个字段的数据神秘消失掉，疯掉…">
+<meta property="og:updated_time" content="2017-10-20T10:19:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Thunf'Blog">
-<meta name="twitter:description" content="一枚野生前端">
+<meta name="twitter:title" content="踩坑parameterLimit - 神秘的1000parse限制">
+<meta name="twitter:description" content="项目中遇到一个诡异的问题：提交表单时，存在字段的值如[1,2,3,4,…,M,N]，但是在服务端解析到的值却是[1,2,3,…,M]，数据没有损坏，偏偏是最后几个字段的数据神秘消失掉，疯掉…">
     
 
     
@@ -99,58 +100,143 @@
 </header>
 
         <div class="outer">
-            <section id="main">
-        <section class="archives-wrap">
-        <div class="archive-tag-wrap">
-            <span class="archive-tag">#红包</span>
-        </div>
-        <div class="archives">
+            <section id="main"><article id="post-20170120-form-keys-1000-limit" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
         
-            <article class="archive-article archive-type-summary">
+        
+        
+            <header class="article-header">
+                
     
-    <div class="archive-article-thumbnail right">
-        <a href="/2016/12/25/20161225-ali-ar/" class="thumbnail">
-    
-    
-        <span style="background-image:url(http://i1.piimg.com/567571/bbc758140b4b6a69.jpg)" alt="如何优雅的在家抢邻居的红包" class="thumbnail-image"></span>
-    
-</a>
-    </div>
-    
-    <div class="archive-article-content">
-        <header class="archive-article-header">
-            
-    
-        <h1 itemprop="name">
-            <a class="archive-article-title" href="/2016/12/25/20161225-ali-ar/">如何优雅的在家抢邻居的红包</a>
+        <h1 class="article-title" itemprop="name">
+            踩坑parameterLimit - 神秘的1000parse限制
         </h1>
     
 
-            <div class="article-meta">
-                
+                <div class="article-meta">
+                    
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2016/12/25/20161225-ali-ar/">
-            <time datetime="2016-12-25T04:23:18.000Z" itemprop="datePublished">2016-12-25</time>
+        <a href="/2017/01/20/20170120-form-keys-1000-limit/">
+            <time datetime="2017-01-20T14:31:52.000Z" itemprop="datePublished">2017-01-20</time>
         </a>
     </div>
 
 
+                    
+                    
+                    
+                    <span id="busuanzi_container_page_pv" class="right">
+                        已被围观<span id="busuanzi_value_page_pv"></span>次
+                    </span>
+                    
+                </div>
+
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找限制"><span class="toc-number">1.</span> <span class="toc-text">查找限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考-amp-发现"><span class="toc-number">2.</span> <span class="toc-text">思考&发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#年终吐槽"><span class="toc-number">3.</span> <span class="toc-text">年终吐槽</span></a></li></ol>
+                </div>
+            
+            <p>项目中遇到一个诡异的问题：提交表单时，存在字段的值如[1,2,3,4,…,M,N]，但是在服务端解析到的值却是[1,2,3,…,M]，数据没有损坏，偏偏是最后几个字段的数据神秘消失掉，疯掉…</p>
+<a id="more"></a>
+<p>仔细排查了从请求发送到接收完成之间的业务代码，并没有发现什么的诡异的地方，只料想应该是存在某种限制，对提交的表单数据的属性（length? size? key?）存在最大限制，那么问题就来了…</p>
+<h2 id="查找限制"><a href="#查找限制" class="headerlink" title="查找限制"></a>查找限制</h2><p>既然是限制，那就有可能是提交时或者接收时做了限制，总之数据不可能在传输时莫名其妙蒸发掉…</p>
+<ul>
+<li>首现，确认发送了完整的数据：<ul>
+<li>控制台（DevTools）</li>
+<li>抓包（Charles）</li>
+</ul>
+</li>
+</ul>
+<p>这两步都很简单，稍微看一下就可以确定数据都是全的，那么问题很可能就出在服务端了（反正不可能传输层稳定漏传了几个字节，还刚刚好对应少的那几个字段，反正我是不信）</p>
+<ul>
+<li>然后，检查服务端收到数据：<ul>
+<li>检查Response中获得的数据体（其实就是这步发现少了数据的）</li>
+<li>检查服务端收到的原始信息中，数据是否完整（只好去撸源码了）</li>
+</ul>
+</li>
+</ul>
+<p>话说这步排查了挺久，按依赖依次排查，最后在<a href="https://github.com/ljharb/qs/blob/v4.0.0/lib/parse.js#L22" target="_blank" rel="external">qs/lib/parse.js</a>发现了一个地方👇</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">internals.parseValues = <span class="function"><span class="keyword">function</span> (<span class="params">str, options</span>) </span>&#123;</div><div class="line">    ...</div><div class="line">    var parts = str.split(options.delimiter, options.parameterLimit === <span class="literal">Infinity</span> ? <span class="literal">undefined</span> : options.parameterLimit);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在qs中，找到如下对parameterLimit的定义：</p>
+<blockquote>
+<p>The depth limit helps mitigate abuse when qs is used to parse user input, and it is recommended to keep it a reasonably small number.<br>For similar reasons, by default qs will only <strong>parse up to 1000 parameters</strong>.  — <a href="https://github.com/ljharb/qs" target="_blank" rel="external">ljharb/qs</a></p>
+</blockquote>
+<p>确实在上述文件里，找到了这样的默认值：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// qs/lib/parse.js</span></div><div class="line"><span class="comment">// Declare internals</span></div><div class="line"><span class="keyword">var</span> internals = &#123;</div><div class="line">    ...</div><div class="line">    delimiter: <span class="string">'&amp;'</span>,</div><div class="line">    <span class="attr">parameterLimit</span>: <span class="number">1000</span>,</div><div class="line">    ...</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>好了，这下可真相大白了，原来使用qs解析键值对的时候，给<code>split</code>传了第二个参数，也就是<code>str.split(&#39;&amp;&#39;, 1000)</code><br>而<code>split</code>的第二个参数，查看文档，定义如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">stringObject.split(separator, howmany)</div></pre></td></tr></table></figure>
+<p>这样一来，就可以解释的通了，默认只split了1000个键值对，而在提交的时候，恰好超出了1000的数量，最后超出的键值对就直接在parse的过程中丢失了。</p>
+<h2 id="思考-amp-发现"><a href="#思考-amp-发现" class="headerlink" title="思考&amp;发现"></a>思考&amp;发现</h2><p>按官方的说明，当QS用于解析用户输入时，深度限制有助于减少滥用，建议将其保持在适合的较小数量，对于参数限制也是相似的原因。</p>
+<p>实际操作中，很少会有表单类型的数据大于1000键值对的情况。而本次查出的这个问题，恰好也反应了koa-grace中存在的问题，并随后进行了修正：在判断<code>Content-Type</code>时，优先判断是否JSON格式<code>application/json</code>（此前默认先判断<code>application/x-www-form-urlencoded</code>）。</p>
+<p>查找问题的过程中，也发现了其他框架同样存在这种处理。比如在<a href="https://github.com/expressjs" target="_blank" rel="external">Express.js</a>的官方组件<a href="https://github.com/expressjs/body-parser" target="_blank" rel="external">expressjs/body-parser</a>的文档中，发现了以下描述：</p>
+<blockquote>
+<p>The parameterLimit option controls the maximum number of parameters that are allowed in the URL-encoded data. If a request contains more parameters than this value, a 413 will be returned to the client. <strong>Defaults to 1000.</strong></p>
+</blockquote>
+<p>这样的处理(413)，至少还有迹可循，像上面那样非要到源码里确认的情况，真是坑了😂</p>
+<h2 id="年终吐槽"><a href="#年终吐槽" class="headerlink" title="年终吐槽"></a>年终吐槽</h2><p>时值年前最后一天上班，明天就飞三亚开年会去了，居然还加班到公司没人才走，也是醉了…</p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    
+
+            
+    
+        <a href="//thunf.me/2017/01/20/20170120-form-keys-1000-limit/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="//thunf.me/2017/01/20/20170120-form-keys-1000-limit/">Comments</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2017/02/17/20170217-grace-vue-boilerplate/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
                 
+                    前后端分离之路 - Vue2项目多入口模板改造方案
                 
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/支付宝/">支付宝</a>, <a class="tag-link" href="/tags/红包/">红包</a>
+            </div>
+        </a>
+    
+    
+        <a href="/2016/12/25/20161225-ali-ar/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">如何优雅的在家抢邻居的红包</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
 
-            </div>
-        </header>
-        
-    </div>
-</article>
-        
-        </div></section>
-        </section>
+    
+    </section>
+
+</section>
             <section id="side">
                 
                     
@@ -334,11 +420,13 @@
     var disqus_shortname = 'thunf';
     
     
+    var disqus_url = '//thunf.me/2017/01/20/20170120-form-keys-1000-limit/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
