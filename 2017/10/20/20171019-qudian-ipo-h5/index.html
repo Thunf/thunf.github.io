@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="Thunf'Blog">
 <meta property="og:description" content="2017年10月18号，趣店集团在纽交所上市！为此，趣店QUX品牌设计组协同趣店FED大前端团队准备了一个小小的H5，为这个不平凡的一天呐喊助威。">
 <meta property="og:image" content="//thunf.cn//img003.qufenqi.com/products/99/92/9992ff0d94a9aed7d83755f892ccf2a8.png">
-<meta property="og:updated_time" content="2017-11-08T14:03:49.000Z">
+<meta property="og:updated_time" content="2018-01-17T11:07:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从策划到传播 - 记趣店IPO快闪H5开发全过程">
 <meta name="twitter:description" content="2017年10月18号，趣店集团在纽交所上市！为此，趣店QUX品牌设计组协同趣店FED大前端团队准备了一个小小的H5，为这个不平凡的一天呐喊助威。">
@@ -206,7 +206,7 @@
 </ul>
 <p>我们最终选择了<strong>H5动画</strong>的效果方案，同时在制作中也参考了10号H5的效果，在保证最终效果可预见的同时，尽可能节省设计和开发的成本。</p>
 <h3 id="主视觉"><a href="#主视觉" class="headerlink" title="主视觉"></a>主视觉</h3><p>这里要感谢准妈UI晓涵的倾情创作，不仅要绘制视觉稿，还要一起商讨每一帧的动画效果。这部分工作，需要把黑白的文字从文稿中抽离出来，在一帧帧中赋予他们生命，让他们在纸上跃然。如此敲打整合，才能确定最终的视觉效果：</p>
-<p><img src="http://img002.qufenqi.com/products/54/8f/548f1836a299a5d2fd7ac0d1f8693e2a.jpg" alt="IPO快闪H5最终版"></p>
+<p><img src="//img002.qufenqi.com/products/54/8f/548f1836a299a5d2fd7ac0d1f8693e2a.jpg" alt="IPO快闪H5最终版"></p>
 <p>关于趣店IPO视觉设计的更多信息，欢迎关注公众号<strong>趣店用户体验中心</strong>，获取最新品牌项目的文章推送，以及本次相关快闪H5的文章：<a href="http://mp.weixin.qq.com/s?__biz=MzI1NTg2NDYwNg==&amp;mid=2247483699&amp;idx=1&amp;sn=5181a3aa43364af4514e0dc5806d197d&amp;chksm=ea2e3b42dd59b25407d1b23102cc4e9d262ce3b70bef0fb7368c15613d59c5ad9ea54862c150&amp;mpshare=1&amp;scene=1&amp;srcid=1023EeCT2CcdErGwJ4vRKqsR#rd" target="_blank" rel="external">欢庆时刻！趣店IPO快闪～</a></p>
 <h2 id="开发方案"><a href="#开发方案" class="headerlink" title="开发方案"></a>开发方案</h2><h3 id="动画方案"><a href="#动画方案" class="headerlink" title="动画方案"></a>动画方案</h3><p>由于我们第一次做这种H5需求，而且只有一周左右的设计&amp;开发时间，快速评估后，如果在开发上投入太大，时间上并不允许，于是必须优先保证项目进展，那么在开发方案的选型上，就转向寻求可以方便生成H5动画的开发工具。期间在参考别家的动画H5时，顺便考察了一些JS动画库和开发工具，比如:</p>
 <ul>
@@ -215,7 +215,7 @@
 <li><a href="http://tumult.com/hype/" target="_blank" rel="external">HYPE - 基于HTML5的创作工具</a>，可以在网页上做出悦目的动画效果，无需 Flash 插件</li>
 </ul>
 <p>最终在试用与评估后，决定试用HYPE来制作我们本次的快闪H5页面。下面是使用HYPE制作时的界面：</p>
-<p><img src="http://img003.qufenqi.com/products/09/a2/09a25d697dcbe22ab6e65151cec097dd.jpg" alt="HYPE界面"></p>
+<p><img src="//img003.qufenqi.com/products/09/a2/09a25d697dcbe22ab6e65151cec097dd.jpg" alt="HYPE界面"></p>
 <p>那么为什么选择了HYPE？其实原因很简单，大概为以下几点：</p>
 <ul>
 <li><strong>安装包很小</strong>（ &lt; 20MB），安装便捷</li>
@@ -258,7 +258,7 @@
 </li>
 </ul>
 <h3 id="分享功能"><a href="#分享功能" class="headerlink" title="分享功能"></a>分享功能</h3><p>这个项目除了H5的制作外，还有一个必须搞定的事：<strong>在微信中分享时，需要显示适合微信界面的分享效果</strong>（如下图分享给好友时的对比，左边为不做任何设置时的分享效果，右图为配置后的分享效果），而这需要搭配<a href="https://mp.weixin.qq.com/wiki?t=resource/res_main&amp;id=mp1421141115" target="_blank" rel="external">微信JSSDK</a>完成。</p>
-<p><img src="http://img002.qufenqi.com/products/65/16/65164820071877645de26f6778acf815.png" alt="微信分享内容（左：未设置分享信息  右：配置微信JSSDK效果）"></p>
+<p><img src="//img002.qufenqi.com/products/65/16/65164820071877645de26f6778acf815.png" alt="微信分享内容（左：未设置分享信息  右：配置微信JSSDK效果）"></p>
 <p>具体的开发细节，按文档一步步完全可以走通，在这里就不累述细节，只讲几个比较关键的点：</p>
 <ul>
 <li><strong>设置JS接口安全域名</strong>：公众号设置内设置此步，只可以填写3个域名或路径<ul>
@@ -321,9 +321,9 @@
 <ul>
 <li>注：<strong>2017-10-18 21:30</strong>：按北京时间计算，为纽交所当日开盘时间，集团小伙伴们此时正聚集在会议中心庆祝&amp;观看直播，同时<strong>开始在朋友圈大量转发IPO信息等</strong></li>
 </ul>
-<p><img src="http://img002.qufenqi.com/products/db/20/db2052eca4451e37b4ce8a4ec2737a2c.jpg" alt="PV/UV"></p>
+<p><img src="//img002.qufenqi.com/products/db/20/db2052eca4451e37b4ce8a4ec2737a2c.jpg" alt="PV/UV"></p>
 <h3 id="来源分析"><a href="#来源分析" class="headerlink" title="来源分析"></a>来源分析</h3><p>微信内页面的来源数据，也如预期一致（预计大部分流量从朋友圈来）。<br>从图上可以看出，从上线至今，来源为朋友圈的访问量达到了82%左右，而15%左右的流量为朋友间直接转发的链接。这意味着，在所有有效转发中，<strong>分享到朋友圈比单独分享给指定朋友的概率，大了5倍</strong>。<br>而转发到QQ及QQ空间的情况也存在，看来有些小伙伴也同时照顾了一下不使用微信的同学们。</p>
-<p><img src="http://img003.qufenqi.com/products/a2/07/a207576696986c3a1ef28a5acf4cab85.png" alt="来源分析"></p>
+<p><img src="//img003.qufenqi.com/products/a2/07/a207576696986c3a1ef28a5acf4cab85.png" alt="来源分析"></p>
 <h3 id="来源-分享转化分析"><a href="#来源-分享转化分析" class="headerlink" title="来源/分享转化分析"></a>来源/分享转化分析</h3><p>微信内页面的分享数据，却是没有预料到的情况。<br>从图上可以看出，约有50%的分享，是从朋友圈分享给了指定的朋友，约30%是从朋友圈再次转发到了朋友圈，还有约13%是从信息转发到了朋友圈。</p>
 <ul>
 <li>这代表在微信中有效的分享里：<ul>
@@ -333,7 +333,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="http://img003.qufenqi.com/products/c8/02/c80228b94066f4a19fdbb6477fe70f54.jpg" alt="来源/分享转化分析"></p>
+<p><img src="//img003.qufenqi.com/products/c8/02/c80228b94066f4a19fdbb6477fe70f54.jpg" alt="来源/分享转化分析"></p>
 <h3 id="转化漏斗"><a href="#转化漏斗" class="headerlink" title="转化漏斗"></a>转化漏斗</h3><p>为了分析用户的行为，特地做了以下3个转化漏斗，分别代表的含义是：</p>
 <ul>
 <li>浏览/分享转化转化漏斗<ul>
@@ -358,7 +358,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="http://img003.qufenqi.com/products/b7/56/b7565a2c9adc795786130beafd147dfa.jpg" alt="转化漏斗"></p>
+<p><img src="//img003.qufenqi.com/products/b7/56/b7565a2c9adc795786130beafd147dfa.jpg" alt="转化漏斗"></p>
 <h3 id="地域分析"><a href="#地域分析" class="headerlink" title="地域分析"></a>地域分析</h3><ul>
 <li>从地域数据可以看出，约36%的用户来源于北京，其次为广东、上海<ul>
 <li>看来本次分享用户的<strong>人脉网络，在一线城市分布较多</strong></li>
@@ -369,7 +369,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="http://img002.qufenqi.com/products/91/86/9186d2da9afc34c496bd82cf6f64ae6d.jpg" alt="地域分析"></p>
+<p><img src="//img002.qufenqi.com/products/91/86/9186d2da9afc34c496bd82cf6f64ae6d.jpg" alt="地域分析"></p>
 <h3 id="网络分析"><a href="#网络分析" class="headerlink" title="网络分析"></a>网络分析</h3><ul>
 <li>从网络类型数据可以看出，约68%的用户是在wifi网络下浏览了页面<ul>
 <li>这意味着<strong>大部分用户</strong>在浏览时，<strong>具备较好的网络情况</strong>（相对移动数据网络较好）</li>
@@ -380,7 +380,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="http://img002.qufenqi.com/products/bd/dc/bddc3c94bf1957f4a2e69fe3dac2eda8.jpg" alt="网络分析"></p>
+<p><img src="//img002.qufenqi.com/products/bd/dc/bddc3c94bf1957f4a2e69fe3dac2eda8.jpg" alt="网络分析"></p>
 <h3 id="设备分析"><a href="#设备分析" class="headerlink" title="设备分析"></a>设备分析</h3><ul>
 <li>按操作系统分布：<ul>
 <li>浏览页面的用户中，IOS用户数量，几乎是安卓用户数量的2倍，<strong>用户设备质量普遍较高</strong></li>
@@ -395,7 +395,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="http://img002.qufenqi.com/products/e0/68/e0680399fd30ec79d1852a1d9dc16407.jpg" alt="设备分析"></p>
+<p><img src="//img002.qufenqi.com/products/e0/68/e0680399fd30ec79d1852a1d9dc16407.jpg" alt="设备分析"></p>
 <h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>本次项目过后，又积累了很多之前未曾有过的经验，个人又有了新的技能增长点～</p>
 <hr>
 
@@ -538,7 +538,7 @@
                             <a href="/2017/01/20/20170120-form-keys-1000-limit/" class="thumbnail">
     
     
-        <span style="background-image:url(http://img003.qufenqi.com/products/6b/16/6b16f016aa06578523cec21b21c1f8bd.jpg)" alt="踩坑parameterLimit - 神秘的1000parse限制" class="thumbnail-image"></span>
+        <span style="background-image:url(//img003.qufenqi.com/products/6b/16/6b16f016aa06578523cec21b21c1f8bd.jpg)" alt="踩坑parameterLimit - 神秘的1000parse限制" class="thumbnail-image"></span>
     
 </a>
                         </div>
