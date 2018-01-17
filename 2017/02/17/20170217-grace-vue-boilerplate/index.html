@@ -8,15 +8,15 @@
     <meta name="description" content="做前后端分离也有一段时间了，需要升级一下项目多入口的构建方案到 Vue@2.x。项目模板没有选择重新开发，而是直接选用了 vue 官方模板 vuejs-templates/webpack。现在我们需要把这个 SPA 单入口模板改成多入口，并且修改添加一些开发功能，以配合 Koa-grace 时的开发流程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前后端分离之路 - Vue2项目多入口模板改造方案">
-<meta property="og:url" content="//thunf.me/2017/02/17/20170217-grace-vue-boilerplate/index.html">
+<meta property="og:url" content="//thunf.cn/2017/02/17/20170217-grace-vue-boilerplate/index.html">
 <meta property="og:site_name" content="Thunf'Blog">
 <meta property="og:description" content="做前后端分离也有一段时间了，需要升级一下项目多入口的构建方案到 Vue@2.x。项目模板没有选择重新开发，而是直接选用了 vue 官方模板 vuejs-templates/webpack。现在我们需要把这个 SPA 单入口模板改成多入口，并且修改添加一些开发功能，以配合 Koa-grace 时的开发流程。">
-<meta property="og:image" content="http://7xrhcw.com1.z0.glb.clouddn.com/blog_vue-grace.jpg">
-<meta property="og:updated_time" content="2017-02-22T08:07:40.000Z">
+<meta property="og:image" content="//thunf.cn//cdn.thunf.cn/20170217215907.jpg">
+<meta property="og:updated_time" content="2018-01-16T18:10:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前后端分离之路 - Vue2项目多入口模板改造方案">
 <meta name="twitter:description" content="做前后端分离也有一段时间了，需要升级一下项目多入口的构建方案到 Vue@2.x。项目模板没有选择重新开发，而是直接选用了 vue 官方模板 vuejs-templates/webpack。现在我们需要把这个 SPA 单入口模板改成多入口，并且修改添加一些开发功能，以配合 Koa-grace 时的开发流程。">
-<meta name="twitter:image" content="http://7xrhcw.com1.z0.glb.clouddn.com/blog_vue-grace.jpg">
+<meta name="twitter:image" content="//thunf.cn//cdn.thunf.cn/20170217215907.jpg">
     
 
     
@@ -74,7 +74,7 @@
             
             <div id="search-form-wrap">
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="//thunf.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="//thunf.cn"></form>
 
 </div>
         </div>
@@ -93,7 +93,7 @@
                 
                 <td>
                     
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="//thunf.me"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="//thunf.cn"></form>
 
                 </td>
             </tr>
@@ -354,7 +354,7 @@
 </li>
 </ul>
 <h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><h3 id="报错信息不显示"><a href="#报错信息不显示" class="headerlink" title="报错信息不显示"></a>报错信息不显示</h3><p>有小伙伴反应这一现象，如下图所示。其实这跟个人使用的terminal配色方案有关（webpack显示错误代码的颜色，正好跟terminal的背景色相同，就看不到了嘛），<a href="#avoidTerminalColorGray">查看解决方案</a>。</p>
-<p><img src="http://7xrhcw.com1.z0.glb.clouddn.com/eslint-terminal.png" alt="problem: terminal-color-gray"></p>
+<p><img src="//cdn.thunf.cn/20170217215953.png" alt="problem: terminal-color-gray"></p>
 <p>经过调试，发现这种提示是由<a href="https://github.com/royriojas/eslint-friendly-formatter/blob/master/index.js#L35" target="_blank" rel="external">eslint-friendly-formatter</a>打印出来的，根据源码显示：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">var parseBoolEnvVar = <span class="function"><span class="keyword">function</span>(<span class="params">varName</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> env = process.env || &#123; &#125;;</div><div class="line">  <span class="keyword">return</span> env[varName] === <span class="string">'true'</span>;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">var</span> subtleLog = <span class="function"><span class="keyword">function</span>(<span class="params">args</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> parseBoolEnvVar(<span class="string">'EFF_NO_GRAY'</span>) ? args : chalk.gray(args);</div><div class="line">&#125;;</div><div class="line">...</div></pre></td></tr></table></figure>
 <h4 id="avoidTerminalColorGray"><a href="#avoidTerminalColorGray" class="headerlink" title="avoidTerminalColorGray"></a>avoidTerminalColorGray</h4><p>只需配置<code>process.env.EFF_NO_GRAY = true</code>即可阻止使用chalk.gray显示文字。<br>那么这个配置也将<strong>加入项目的配置文件，如下配置</strong>即可</p>
@@ -376,7 +376,7 @@
 <li><img src="https://img.shields.io/github/stars/Thunf/grace-vue-webpack-boilerplate.svg?label=%E2%98%85" alt=""> <strong>基于Koa-grace的多入口Vue@2.x项目构建方案 🚀 <a href="https://github.com/Thunf/grace-vue-webpack-boilerplate" target="_blank" rel="external">Grace-vue-webpack-boilerplate</a></strong></li>
 </ul>
 <p>如果你有其他项目需要配置Vue@2.x项目多入口方案，也欢迎加入我们的群交流~</p>
-<p><img src="http://7xrhcw.com1.z0.glb.clouddn.com/grace-qq.png" alt="Koa-grace交流群"></p>
+<p><img src="//cdn.thunf.cn/20170217215954.png" alt="Koa-grace交流群"></p>
 
         
         </div>
@@ -391,7 +391,7 @@
 
             
     
-        <a href="//thunf.me/2017/02/17/20170217-grace-vue-boilerplate/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="//thunf.me/2017/02/17/20170217-grace-vue-boilerplate/">Comments</a>
+        <a href="//thunf.cn/2017/02/17/20170217-grace-vue-boilerplate/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="//thunf.cn/2017/02/17/20170217-grace-vue-boilerplate/">Comments</a>
     
 
         </footer>
@@ -465,7 +465,7 @@
             <table>
                 <tr>
                     
-                    <td><a href="http://github.com/thunf" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
+                    <td><a href="https://github.com/thunf" target="_blank" title="github"><i class="fa fa-github"></i></a></td>
                     
                 </tr>
             </table>
@@ -508,7 +508,7 @@
                             <a href="/2017/02/17/20170217-grace-vue-boilerplate/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrhcw.com1.z0.glb.clouddn.com/blog_vue-grace.jpg)" alt="前后端分离之路 - Vue2项目多入口模板改造方案" class="thumbnail-image"></span>
+        <span style="background-image:url(//cdn.thunf.cn/20170217215907.jpg)" alt="前后端分离之路 - Vue2项目多入口模板改造方案" class="thumbnail-image"></span>
     
 </a>
                         </div>
@@ -544,7 +544,7 @@
                             <a href="/2016/12/25/20161225-ali-ar/" class="thumbnail">
     
     
-        <span style="background-image:url(http://i1.piimg.com/567571/bbc758140b4b6a69.jpg)" alt="如何优雅的在家抢邻居的红包" class="thumbnail-image"></span>
+        <span style="background-image:url(//cdn.thunf.cn/20170211215953.png)" alt="如何优雅的在家抢邻居的红包" class="thumbnail-image"></span>
     
 </a>
                         </div>
@@ -562,7 +562,7 @@
                             <a href="/2016/03/03/20160303-blog-resolve-dns/" class="thumbnail">
     
     
-        <span style="background-image:url(http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/72446606.jpg)" alt="把博客托管到github和coding" class="thumbnail-image"></span>
+        <span style="background-image:url(//cdn.thunf.cn/20160303133303.jpg)" alt="把博客托管到github和coding" class="thumbnail-image"></span>
     
 </a>
                         </div>
@@ -603,7 +603,7 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2017 thunf.me
+            &copy; 2018 thunf.cn
             <span id="busuanzi_container_site_pv">已被围观<span id="busuanzi_value_site_pv"></span>次</span>
             <br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
@@ -617,7 +617,7 @@
     var disqus_shortname = 'thunf';
     
     
-    var disqus_url = '//thunf.me/2017/02/17/20170217-grace-vue-boilerplate/';
+    var disqus_url = '//thunf.cn/2017/02/17/20170217-grace-vue-boilerplate/';
     
     (function() {
     var dsq = document.createElement('script');
