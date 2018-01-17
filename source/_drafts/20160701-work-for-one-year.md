@@ -22,7 +22,7 @@ photo:
 - 负责并组织商家后台视觉升级 - UI3 -> UI4（`It's a big challenge & I made it`）
 - 开始健身 & 买私教课
 - 入手烤箱 & 首烤给了红薯
-- 入手个人域名，启用个人博客 - [thunf.me](http://thunf.me)
+- 入手个人域名，启用个人博客 - [thunf.me](https://thunf.cn)
 - 负责店铺装修PC端开发（`Just do it`）
 - 首次乘机 & 首次连续转机
 - 无心之旅 - 大理
