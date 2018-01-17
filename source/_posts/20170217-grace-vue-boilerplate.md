@@ -7,7 +7,7 @@ tags:
   - vue
   - boilerplate
 categories:
-thumbnail: http://7xrhcw.com1.z0.glb.clouddn.com/blog_vue-grace.jpg
+thumbnail: //cdn.thunf.cn/20170217215907.jpg
 photo:
 ---
 
@@ -691,7 +691,7 @@ This module ensures that new contributors follow some basic style standards. ---
 [url_eslint-loader]: https://github.com/MoOx/eslint-loader#noerrorsplugin
 [url_fork]: https://github.com/Thunf/grace-vue-webpack-boilerplate#fork-it-and-make-your-own
 [url_eslint-formatter]: https://github.com/royriojas/eslint-friendly-formatter/blob/master/index.js#L35
-[image_eslint-terminal-color]: http://7xrhcw.com1.z0.glb.clouddn.com/eslint-terminal.png
-[image_grace-qq]: http://7xrhcw.com1.z0.glb.clouddn.com/grace-qq.png
+[image_eslint-terminal-color]: //cdn.thunf.cn/20170217215953.png
+[image_grace-qq]: //cdn.thunf.cn/20170217215954.png
 
 

@@ -6,7 +6,7 @@ tags:
     - blog
     - dns
 categories:
-thumbnail: http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/72446606.jpg
+thumbnail: //cdn.thunf.cn/20160303133303.jpg
 photo:
 ---
 
@@ -124,6 +124,6 @@ git push && git push coding
 
 
 
-[pic1]: http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/52545842.jpg
-[pic2]: http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/11136862.jpg
-[pic3]: http://7xrhcw.com1.z0.glb.clouddn.com/16-3-3/55205442.jpg
+[pic1]: //cdn.thunf.cn/20160303133318.jpg
+[pic2]: //cdn.thunf.cn/20160303133328.jpg
+[pic3]: //cdn.thunf.cn/20160303133338.jpg

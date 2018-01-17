@@ -21,8 +21,8 @@ comments: false
     - [小泽](https://nodefe.com/)
 
 
-- 联系方式：
+<!-- - 联系方式： -->
 
-<img src="http://7xrhcw.com1.z0.glb.clouddn.com/wx%202.jpg" alt="wx Thunf" width="30%">
-<img src="http://7xrhcw.com1.z0.glb.clouddn.com/wx_m.jpg" alt="wx donate" width="30%">
+<!-- <img src="//cdn.thunf.cn/wx.jpg" alt="wx Thunf" width="30%"> -->
+<!-- <img src="//cdn.thunf.cn/wxpay.jpg" alt="wx donate" width="30%"> -->
     

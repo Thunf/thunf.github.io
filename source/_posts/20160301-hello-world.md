@@ -4,7 +4,7 @@ date: 2016-03-01 16:21:12
 toc: true
 tags: blog
 categories:
-thumbnail: http://7xrhcw.com1.z0.glb.clouddn.com/16-3-4/53950428.jpg
+thumbnail: //cdn.thunf.cn/20160301162112.jpg
 photo:
 ---
 
