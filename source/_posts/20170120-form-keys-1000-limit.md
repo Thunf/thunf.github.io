@@ -4,7 +4,7 @@ toc: true
 date: 2017-01-20 22:31:52
 tags:
 categories:
-thumbnail: http://img003.qufenqi.com/products/6b/16/6b16f016aa06578523cec21b21c1f8bd.jpg
+thumbnail: //img003.qufenqi.com/products/6b/16/6b16f016aa06578523cec21b21c1f8bd.jpg
 photo:
 ---
 

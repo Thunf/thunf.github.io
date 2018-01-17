@@ -310,15 +310,15 @@ photo:
 [url_wx_share_demo_code]: http://demo.open.weixin.qq.com/jssdk/sample.zip
 
 
-[img_ui]: http://img002.qufenqi.com/products/54/8f/548f1836a299a5d2fd7ac0d1f8693e2a.jpg
-[img_hype]: http://img003.qufenqi.com/products/09/a2/09a25d697dcbe22ab6e65151cec097dd.jpg
-[img_wx_share_panel]: http://img002.qufenqi.com/products/65/16/65164820071877645de26f6778acf815.png
-[img_bi_pvuv]: http://img002.qufenqi.com/products/db/20/db2052eca4451e37b4ce8a4ec2737a2c.jpg
-[img_bi_network]: http://img002.qufenqi.com/products/bd/dc/bddc3c94bf1957f4a2e69fe3dac2eda8.jpg
-[img_bi_device]: http://img002.qufenqi.com/products/e0/68/e0680399fd30ec79d1852a1d9dc16407.jpg
-[img_bi_channel_from]: http://img003.qufenqi.com/products/a2/07/a207576696986c3a1ef28a5acf4cab85.png
-[img_bi_channel_from_to]: http://img003.qufenqi.com/products/c8/02/c80228b94066f4a19fdbb6477fe70f54.jpg
-[img_bi_channel_transform]: http://img003.qufenqi.com/products/b7/56/b7565a2c9adc795786130beafd147dfa.jpg
-[img_bi_area]: http://img002.qufenqi.com/products/91/86/9186d2da9afc34c496bd82cf6f64ae6d.jpg
+[img_ui]: //img002.qufenqi.com/products/54/8f/548f1836a299a5d2fd7ac0d1f8693e2a.jpg
+[img_hype]: //img003.qufenqi.com/products/09/a2/09a25d697dcbe22ab6e65151cec097dd.jpg
+[img_wx_share_panel]: //img002.qufenqi.com/products/65/16/65164820071877645de26f6778acf815.png
+[img_bi_pvuv]: //img002.qufenqi.com/products/db/20/db2052eca4451e37b4ce8a4ec2737a2c.jpg
+[img_bi_network]: //img002.qufenqi.com/products/bd/dc/bddc3c94bf1957f4a2e69fe3dac2eda8.jpg
+[img_bi_device]: //img002.qufenqi.com/products/e0/68/e0680399fd30ec79d1852a1d9dc16407.jpg
+[img_bi_channel_from]: //img003.qufenqi.com/products/a2/07/a207576696986c3a1ef28a5acf4cab85.png
+[img_bi_channel_from_to]: //img003.qufenqi.com/products/c8/02/c80228b94066f4a19fdbb6477fe70f54.jpg
+[img_bi_channel_transform]: //img003.qufenqi.com/products/b7/56/b7565a2c9adc795786130beafd147dfa.jpg
+[img_bi_area]: //img002.qufenqi.com/products/91/86/9186d2da9afc34c496bd82cf6f64ae6d.jpg
 
 
