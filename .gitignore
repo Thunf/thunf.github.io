@@ -15,3 +15,8 @@ selenium-debug.log
 *.ntvs*
 *.njsproj
 *.sln
+
+_config.yml
+db.json
+public/
+themes/
