@@ -9,5 +9,6 @@ _config.yml
 themes/**/
 
 public
+publish
 
 
