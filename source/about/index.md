@@ -5,20 +5,8 @@ comments: false
 ---
 
 
-- 日子怎么过：
-    - 前端
-    - 睡觉
-    - 吃
-    - 摄影
-    - 健身
+这里有一只懒汉 \_(:з」∠)\_\_
 
-
-- 我的朋友们：
-    - [阿烈叔](https://www.baidufe.com/)
-    - [wilee](http://wilee.me/)
-    - [kugua](http://blog.fexnotes.com/)
-    - [hirra](https://www.hirra.cn/)
-    - [小泽](https://nodefe.com/)
 
 
 <!-- - 联系方式： -->
