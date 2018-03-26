@@ -7,3 +7,5 @@ categories:
 thumbnail:
 photo:
 ---
+
+<!-- more -->
