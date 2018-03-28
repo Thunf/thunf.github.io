@@ -16,7 +16,14 @@
 
     <script>
     setTimeout(function() {
+        document.querySelector('.site-title').appendChild(document.createElement('br'))
         document.querySelector('.site-title').append(JSON.stringify({availHeight: window.screen.availHeight, availLeft: window.screen.availLeft, availTop: window.screen.availTop, availWidth: window.screen.availWidth, colorDepth: window.screen.colorDepth, height: window.screen.height, orientation: window.screen.orientation, pixelDepth: window.screen.pixelDepth, width: window.screen.width}, null, 2))
+        document.querySelector('.site-title').appendChild(document.createElement('br'))
+        var body = document.querySelector('body');
+        document.querySelector('.site-title').append([
+            body.offsetWidth, body.offsetHeight,
+            body.clientWidth, body.clientHeight
+        ].join('|'))
     }, 5000)
     </script>
 
