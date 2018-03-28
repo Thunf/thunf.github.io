@@ -1,13 +1,14 @@
 ---
 title: 永不消失的遮罩：鲜为人知的 Context 大坑
 toc: true
-date: 2018-03-22 16:30:00
 tags:
   - CSS
-categories:
 thumbnail: //img003.qufenqi.com/products/8d/1c/8d1c2c5cc87ef37f2481f3da58a394bf.jpg
+date: 2018-03-22 16:30:00
+categories:
 photo:
 ---
+
 
 这是一个令人费解的遮罩问题，经过各种调试与查阅资料后，发现由 z-index 一路牵扯到 Stacking Context，浑水竟然如此之深...
 
