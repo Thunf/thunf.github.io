@@ -10,23 +10,8 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <!-- <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> -->
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-
-    <script>
-    setTimeout(function() {
-        document.querySelector('.site-title').appendChild(document.createElement('br'))
-        document.querySelector('.site-title').append(JSON.stringify({availHeight: window.screen.availHeight, availLeft: window.screen.availLeft, availTop: window.screen.availTop, availWidth: window.screen.availWidth, colorDepth: window.screen.colorDepth, height: window.screen.height, orientation: window.screen.orientation, pixelDepth: window.screen.pixelDepth, width: window.screen.width}, null, 2))
-        document.querySelector('.site-title').appendChild(document.createElement('br'))
-        var body = document.querySelector('body');
-        document.querySelector('.site-title').append([
-            body.offsetWidth, body.offsetHeight,
-            body.clientWidth, body.clientHeight
-        ].join('|'))
-    }, 5000)
-    </script>
-
     <meta name="description" content="这是一个令人费解的遮罩问题，经过各种调试与查阅资料后，发现由 z-index 一路牵扯到 Stacking Context，浑水竟然如此之深…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="永不消失的遮罩：鲜为人知的 Context 大坑">
@@ -606,13 +591,15 @@ z-index:  canvas  -1    0    1    2
     
     var disqus_url = '//thunf.cn/2018/03/22/20180322-css-stacking-context/';
     
-    setTimeout(function() {
-    var dsq = document.createElement('script');
-    dsq.type = 'text/javascript';
-    dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    });
+    var wOnload = window.onload;
+    window.onload = function() {
+        wOnload();
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }
     </script>
 
 
