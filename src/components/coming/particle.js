@@ -64,16 +64,16 @@ var CreateParticle = function(id){
 	}
 
 	function onDocumentTouchStart( event ) {
-		if ( event.touches.length === 1 ) {
-			event.preventDefault();
+		if ( event.touches.length >= 1 ) {
+			// event.preventDefault();
 			mouseX = event.touches[ 0 ].pageX - windowHalfX;
 			mouseY = event.touches[ 0 ].pageY - windowHalfY;
 		}
 	}
 
 	function onDocumentTouchMove( event ) {
-		if ( event.touches.length === 1 ) {
-			event.preventDefault();
+		if ( event.touches.length >= 1 ) {
+			// event.preventDefault();
 			mouseX = event.touches[ 0 ].pageX - windowHalfX;
 			mouseY = event.touches[ 0 ].pageY - windowHalfY;
 		}
