@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
     <title>踩坑parameterLimit - 神秘的1000parse限制 | Thunf&#39;Blog</title>
@@ -9,27 +9,28 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="项目中遇到一个诡异的问题：提交表单时，存在字段的值如[1,2,3,4,…,M,N]，但是在服务端解析到的值却是[1,2,3,…,M]，数据没有损坏，偏偏是最后几个字段的数据神秘消失掉，疯掉…">
 <meta property="og:type" content="article">
 <meta property="og:title" content="踩坑parameterLimit - 神秘的1000parse限制">
-<meta property="og:url" content="//thunf.cn/2017/01/20/20170120-form-keys-1000-limit/index.html">
-<meta property="og:site_name" content="Thunf'Blog">
+<meta property="og:url" content="//thunf.me/2017/01/20/20170120-form-keys-1000-limit/index.html">
+<meta property="og:site_name" content="Thunf&#39;Blog">
 <meta property="og:description" content="项目中遇到一个诡异的问题：提交表单时，存在字段的值如[1,2,3,4,…,M,N]，但是在服务端解析到的值却是[1,2,3,…,M]，数据没有损坏，偏偏是最后几个字段的数据神秘消失掉，疯掉…">
-<meta property="og:image" content="//thunf.cn//img003.qufenqi.com/products/6b/16/6b16f016aa06578523cec21b21c1f8bd.jpg">
-<meta property="og:updated_time" content="2018-02-17T17:07:53.000Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="//img003.qufenqi.com/products/6b/16/6b16f016aa06578523cec21b21c1f8bd.jpg">
+<meta property="og:updated_time" content="2019-02-25T14:57:27.358Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="踩坑parameterLimit - 神秘的1000parse限制">
 <meta name="twitter:description" content="项目中遇到一个诡异的问题：提交表单时，存在字段的值如[1,2,3,4,…,M,N]，但是在服务端解析到的值却是[1,2,3,…,M]，数据没有损坏，偏偏是最后几个字段的数据神秘消失掉，疯掉…">
-<meta name="twitter:image" content="//thunf.cn//img003.qufenqi.com/products/6b/16/6b16f016aa06578523cec21b21c1f8bd.jpg">
+<meta name="twitter:image" content="//img003.qufenqi.com/products/6b/16/6b16f016aa06578523cec21b21c1f8bd.jpg">
     
 
     
 
     
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico">
     
 
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
@@ -47,7 +48,7 @@
     
     
 
-</head>
+</head></html>
 <body>
     <div id="container">
         <header id="header">
@@ -73,7 +74,7 @@
                 <nav id="sub-nav">
                     <div class="profile" id="profile-nav">
                         <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar.png" />
+                            <img class="avatar" src="/css/images/avatar.png">
                             <i class="fa fa-caret-down"></i>
                         </a>
                     </div>
@@ -81,7 +82,7 @@
             
             <div id="search-form-wrap">
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="//thunf.cn"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="//thunf.me"></form>
 
 </div>
         </div>
@@ -100,7 +101,7 @@
                 
                 <td>
                     
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="//thunf.cn"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="//thunf.me"></form>
 
                 </td>
             </tr>
@@ -148,7 +149,7 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找限制"><span class="toc-number">1.</span> <span class="toc-text">查找限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考-amp-发现"><span class="toc-number">2.</span> <span class="toc-text">思考&发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#年终吐槽"><span class="toc-number">3.</span> <span class="toc-text">年终吐槽</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#查找限制"><span class="toc-number">1.</span> <span class="toc-text">查找限制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思考-amp-发现"><span class="toc-number">2.</span> <span class="toc-text">思考&amp;发现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#年终吐槽"><span class="toc-number">3.</span> <span class="toc-text">年终吐槽</span></a></li></ol>
                 </div>
             
             <p>项目中遇到一个诡异的问题：提交表单时，存在字段的值如[1,2,3,4,…,M,N]，但是在服务端解析到的值却是[1,2,3,…,M]，数据没有损坏，偏偏是最后几个字段的数据神秘消失掉，疯掉…</p>
@@ -170,20 +171,20 @@
 </ul>
 </li>
 </ul>
-<p>话说这步排查了挺久，按依赖依次排查，最后在<a href="https://github.com/ljharb/qs/blob/v4.0.0/lib/parse.js#L22" target="_blank" rel="external">qs/lib/parse.js</a>发现了一个地方👇</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">internals.parseValues = <span class="function"><span class="keyword">function</span> (<span class="params">str, options</span>) </span>&#123;</div><div class="line">    ...</div><div class="line">    var parts = str.split(options.delimiter, options.parameterLimit === <span class="literal">Infinity</span> ? <span class="literal">undefined</span> : options.parameterLimit);</div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>话说这步排查了挺久，按依赖依次排查，最后在<a href="https://github.com/ljharb/qs/blob/v4.0.0/lib/parse.js#L22" target="_blank" rel="noopener">qs/lib/parse.js</a>发现了一个地方👇</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">internals.parseValues = <span class="function"><span class="keyword">function</span> (<span class="params">str, options</span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">var</span> parts = str.split(options.delimiter, options.parameterLimit === <span class="literal">Infinity</span> ? <span class="literal">undefined</span> : options.parameterLimit);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在qs中，找到如下对parameterLimit的定义：</p>
 <blockquote>
-<p>The depth limit helps mitigate abuse when qs is used to parse user input, and it is recommended to keep it a reasonably small number.<br>For similar reasons, by default qs will only <strong>parse up to 1000 parameters</strong>.  — <a href="https://github.com/ljharb/qs" target="_blank" rel="external">ljharb/qs</a></p>
+<p>The depth limit helps mitigate abuse when qs is used to parse user input, and it is recommended to keep it a reasonably small number.<br>For similar reasons, by default qs will only <strong>parse up to 1000 parameters</strong>.  — <a href="https://github.com/ljharb/qs" target="_blank" rel="noopener">ljharb/qs</a></p>
 </blockquote>
 <p>确实在上述文件里，找到了这样的默认值：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// qs/lib/parse.js</span></div><div class="line"><span class="comment">// Declare internals</span></div><div class="line"><span class="keyword">var</span> internals = &#123;</div><div class="line">    ...</div><div class="line">    delimiter: <span class="string">'&amp;'</span>,</div><div class="line">    <span class="attr">parameterLimit</span>: <span class="number">1000</span>,</div><div class="line">    ...</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// qs/lib/parse.js</span></span><br><span class="line"><span class="comment">// Declare internals</span></span><br><span class="line"><span class="keyword">var</span> internals = &#123;</span><br><span class="line">    ...</span><br><span class="line">    delimiter: <span class="string">'&amp;'</span>,</span><br><span class="line">    parameterLimit: <span class="number">1000</span>,</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>好了，这下可真相大白了，原来使用qs解析键值对的时候，给<code>split</code>传了第二个参数，也就是<code>str.split(&#39;&amp;&#39;, 1000)</code><br>而<code>split</code>的第二个参数，查看文档，定义如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">stringObject.split(separator, howmany)</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringObject.split(separator, howmany)</span><br></pre></td></tr></table></figure>
 <p>这样一来，就可以解释的通了，默认只split了1000个键值对，而在提交的时候，恰好超出了1000的数量，最后超出的键值对就直接在parse的过程中丢失了。</p>
 <h2 id="思考-amp-发现"><a href="#思考-amp-发现" class="headerlink" title="思考&amp;发现"></a>思考&amp;发现</h2><p>按官方的说明，当QS用于解析用户输入时，深度限制有助于减少滥用，建议将其保持在适合的较小数量，对于参数限制也是相似的原因。</p>
 <p>实际操作中，很少会有表单类型的数据大于1000键值对的情况。而本次查出的这个问题，恰好也反应了koa-grace中存在的问题，并随后进行了修正：在判断<code>Content-Type</code>时，优先判断是否JSON格式<code>application/json</code>（此前默认先判断<code>application/x-www-form-urlencoded</code>）。</p>
-<p>查找问题的过程中，也发现了其他框架同样存在这种处理。比如在<a href="https://github.com/expressjs" target="_blank" rel="external">Express.js</a>的官方组件<a href="https://github.com/expressjs/body-parser" target="_blank" rel="external">expressjs/body-parser</a>的文档中，发现了以下描述：</p>
+<p>查找问题的过程中，也发现了其他框架同样存在这种处理。比如在<a href="https://github.com/expressjs" target="_blank" rel="noopener">Express.js</a>的官方组件<a href="https://github.com/expressjs/body-parser" target="_blank" rel="noopener">expressjs/body-parser</a>的文档中，发现了以下描述：</p>
 <blockquote>
 <p>The parameterLimit option controls the maximum number of parameters that are allowed in the URL-encoded data. If a request contains more parameters than this value, a 413 will be returned to the client. <strong>Defaults to 1000.</strong></p>
 </blockquote>
@@ -203,7 +204,7 @@
 
             
     
-        <a href="//thunf.cn/2017/01/20/20170120-form-keys-1000-limit/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="//thunf.cn/2017/01/20/20170120-form-keys-1000-limit/">Comments</a>
+        <a href="//thunf.me/2017/01/20/20170120-form-keys-1000-limit/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="//thunf.me/2017/01/20/20170120-form-keys-1000-limit/">Comments</a>
     
 
         </footer>
@@ -252,7 +253,7 @@
 <aside id="profile">
     <div class="inner profile-inner">
         <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar.png" />
+            <img id="avatar" src="/css/images/avatar.png">
             <h2 id="name">Thunf</h2>
             <h3 id="title">沉醉不知归路</h3>
             <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
@@ -260,13 +261,13 @@
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                <a class="profile-link" href="/archives" >
+                <a class="profile-link" href="/archives">
                     7
                     <span>文章</span>
                 </a>                
             </div>
             <div class="article-info-block">
-                <a class="profile-link" href="/tags" >
+                <a class="profile-link" href="/tags">
                     10
                     <span>标签</span>
                 </a>                
@@ -294,7 +295,7 @@
     <div class="widget-wrap">
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
-            <ul id="recent-post" class="">
+            <ul id="recent-post" class>
                 
                     <li>
                         
@@ -435,8 +436,8 @@
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018
-            <script>document.write(location.hostname || "thunf.cn")</script>
+            &copy; 2019
+            <script>document.write(location.hostname || "thunf.me")</script>
             <span id="busuanzi_container_site_pv">已被围观<span id="busuanzi_value_site_pv"></span>次</span>
             <br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
@@ -450,7 +451,7 @@
     var disqus_shortname = 'thunf';
     
     
-    var disqus_url = '//thunf.cn/2017/01/20/20170120-form-keys-1000-limit/';
+    var disqus_url = '//thunf.me/2017/01/20/20170120-form-keys-1000-limit/';
     
     var wOnload = window.onload;
     window.onload = function() {
@@ -474,7 +475,7 @@
 <script src="/js/main.js"></script>
 
 <!-- 不蒜子 -->
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!-- 百度 -->
 <script>
     var _hmt = _hmt || [];

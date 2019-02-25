@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh">
-<head>
+<head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     
     <title>永不消失的遮罩：鲜为人知的 Context 大坑 | Thunf&#39;Blog</title>
@@ -9,27 +9,29 @@
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="format-detection" content="telephone=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="这是一个令人费解的遮罩问题，经过各种调试与查阅资料后，发现由 z-index 一路牵扯到 Stacking Context，浑水竟然如此之深…">
+<meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="永不消失的遮罩：鲜为人知的 Context 大坑">
-<meta property="og:url" content="//thunf.cn/2018/03/22/20180322-css-stacking-context/index.html">
-<meta property="og:site_name" content="Thunf'Blog">
+<meta property="og:url" content="//thunf.me/2018/03/22/20180322-css-stacking-context/index.html">
+<meta property="og:site_name" content="Thunf&#39;Blog">
 <meta property="og:description" content="这是一个令人费解的遮罩问题，经过各种调试与查阅资料后，发现由 z-index 一路牵扯到 Stacking Context，浑水竟然如此之深…">
-<meta property="og:image" content="//thunf.cn//img003.qufenqi.com/products/8d/1c/8d1c2c5cc87ef37f2481f3da58a394bf.jpg">
-<meta property="og:updated_time" content="2018-03-26T15:54:23.000Z">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="//img003.qufenqi.com/products/8d/1c/8d1c2c5cc87ef37f2481f3da58a394bf.jpg">
+<meta property="og:updated_time" content="2019-02-25T14:57:27.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="永不消失的遮罩：鲜为人知的 Context 大坑">
 <meta name="twitter:description" content="这是一个令人费解的遮罩问题，经过各种调试与查阅资料后，发现由 z-index 一路牵扯到 Stacking Context，浑水竟然如此之深…">
-<meta name="twitter:image" content="//thunf.cn//img003.qufenqi.com/products/8d/1c/8d1c2c5cc87ef37f2481f3da58a394bf.jpg">
+<meta name="twitter:image" content="//img003.qufenqi.com/products/8d/1c/8d1c2c5cc87ef37f2481f3da58a394bf.jpg">
     
 
     
 
     
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico">
     
 
     <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
@@ -47,7 +49,7 @@
     
     
 
-</head>
+</head></html>
 <body>
     <div id="container">
         <header id="header">
@@ -73,7 +75,7 @@
                 <nav id="sub-nav">
                     <div class="profile" id="profile-nav">
                         <a id="profile-anchor" href="javascript:;">
-                            <img class="avatar" src="/css/images/avatar.png" />
+                            <img class="avatar" src="/css/images/avatar.png">
                             <i class="fa fa-caret-down"></i>
                         </a>
                     </div>
@@ -81,7 +83,7 @@
             
             <div id="search-form-wrap">
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="//thunf.cn"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit"> </button><input type="hidden" name="sitesearch" value="//thunf.me"></form>
 
 </div>
         </div>
@@ -100,7 +102,7 @@
                 
                 <td>
                     
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="//thunf.cn"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><input type="hidden" name="sitesearch" value="//thunf.me"></form>
 
                 </td>
             </tr>
@@ -153,7 +155,7 @@
             
                 <div id="toc" class="toc-article">
                 <strong class="toc-title">文章目录</strong>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#永不消失的遮罩"><span class="toc-number">1.</span> <span class="toc-text">永不消失的遮罩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stacking-Context"><span class="toc-number">2.</span> <span class="toc-text">Stacking Context</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Z-index"><span class="toc-number">2.1.</span> <span class="toc-text">Z-index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stack-Level"><span class="toc-number">2.2.</span> <span class="toc-text">Stack Level</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Features"><span class="toc-number">2.3.</span> <span class="toc-text">Features</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Establishes-A-Stacking-Context"><span class="toc-number">2.4.</span> <span class="toc-text">Establishes A Stacking Context</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Analyze-amp-Solve-Problem"><span class="toc-number">3.</span> <span class="toc-text">Analyze & Solve Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题描述"><span class="toc-number">3.1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#科学解释"><span class="toc-number">3.2.</span> <span class="toc-text">科学解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题联想"><span class="toc-number">3.3.</span> <span class="toc-text">问题联想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文档"><span class="toc-number">4.</span> <span class="toc-text">参考文档</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#永不消失的遮罩"><span class="toc-number">1.</span> <span class="toc-text">永不消失的遮罩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stacking-Context"><span class="toc-number">2.</span> <span class="toc-text">Stacking Context</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Stack-Level"><span class="toc-number">2.1.</span> <span class="toc-text">Stack Level</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Features"><span class="toc-number">2.2.</span> <span class="toc-text">Features</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Establishes-A-Stacking-Context"><span class="toc-number">2.3.</span> <span class="toc-text">Establishes A Stacking Context</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Analyze-amp-Solve-Problem"><span class="toc-number">3.</span> <span class="toc-text">Analyze &amp; Solve Problem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题描述"><span class="toc-number">3.1.</span> <span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#科学解释"><span class="toc-number">3.2.</span> <span class="toc-text">科学解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题联想"><span class="toc-number">3.3.</span> <span class="toc-text">问题联想</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文档"><span class="toc-number">4.</span> <span class="toc-text">参考文档</span></a></li></ol>
                 </div>
             
             <p>这是一个令人费解的遮罩问题，经过各种调试与查阅资料后，发现由 z-index 一路牵扯到 Stacking Context，浑水竟然如此之深…</p>
@@ -171,30 +173,12 @@ p + div.zs{margin-top: -1.6em;}
 
 
 <h2 id="永不消失的遮罩"><a href="#永不消失的遮罩" class="headerlink" title="永不消失的遮罩"></a>永不消失的遮罩</h2><p>众所周知，z-index这货能控制元素的层级，遵循近大远小、后来居上的规则，可以把元素举高高或者打入幕后。<br>比如在做各种浮层/层叠定位的时候，拿来用一用。</p>
-<p>直到最近调试了一个<a href="https://thunf.github.io/Demos/article/20180322_stacking_context?overflow" target="_blank" rel="external">诡异的弹层页面（示例）</a>，遮罩死皮赖脸的cover全场 (╯‵□′)╯︵┻━┻<br>调试过程略过，下面梳理一下涉及的知识点，从<code>stacking context（层叠上下文）</code>说起：</p>
+<p>直到最近调试了一个<a href="https://thunf.github.io/Demos/article/20180322_stacking_context?overflow" target="_blank" rel="noopener">诡异的弹层页面（示例）</a>，遮罩死皮赖脸的cover全场 (╯‵□′)╯︵┻━┻<br>调试过程略过，下面梳理一下涉及的知识点，从<code>stacking context（层叠上下文）</code>说起：</p>
 <h2 id="Stacking-Context"><a href="#Stacking-Context" class="headerlink" title="Stacking Context"></a>Stacking Context</h2><blockquote>
 <p>The bottom of the stack is the furthest from the user.<br>The top of the stack is the nearest to the user.</p>
-<p><div class="zs"> ——<a href="https://www.w3.org/TR/CSS2/zindex.html#painting-order" target="_blank" rel="external">w3.org/CSS22#Painting order</a> </div></p>
-<pre style="font-family: monospace;">
-            |      |         |    |
-            |           |    |    |    ⇦ ☻
-            |           |         |    user
-z-index:  canvas  -1    0    1    2
-</pre>
-
 </blockquote>
-<p>在HTML的世界里，除了<code>x轴</code>（水平）和<code>y轴</code>（竖直）的维度，还有<code>z轴</code>（垂直屏幕）的维度；</p>
-<p>可以想象在z轴上存在很多个层，那么处于底部的元素距离用户最远，而在顶部的元素则距离用户最近，相对下层的元素，用户会先看到其上部的元素；</p>
-<p>在这个维度中，通过对比z-index的值，来决定各个层最终如何展示在用户的视野中。而这种通过z-index对比层级关系并影响子元素渲染顺序的结构，我们称之为层叠上下文（Stacking Context）。</p>
-<h3 id="Z-index"><a href="#Z-index" class="headerlink" title="Z-index"></a>Z-index</h3><blockquote>
-<p></p><p class="pp">For a positioned box, the ‘z-index’ property specifies:</p><p></p>
-<ul>
-<li>The stack level of the box in the current stacking context.</li>
-<li>Whether the box establishes a stacking context.<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="external">w3.org/CSS22#z-index</a></div>
+<div class="zs"> ——<a href="https://www.w3.org/TR/CSS2/zindex.html#painting-order" target="_blank" rel="noopener">w3.org/CSS22#Painting order</a> </div><br><pre style="font-family: monospace;"><br>            |      |         |    |<br>            |           |    |    |    ⇦ ☻<br>            |           |         |    user<br>z-index:  canvas  -1    0    1    2<br></pre><br><br>在HTML的世界里，除了<code>x轴</code>（水平）和<code>y轴</code>（竖直）的维度，还有<code>z轴</code>（垂直屏幕）的维度；<br><br>可以想象在z轴上存在很多个层，那么处于底部的元素距离用户最远，而在顶部的元素则距离用户最近，相对下层的元素，用户会先看到其上部的元素；<br><br>在这个维度中，通过对比z-index的值，来决定各个层最终如何展示在用户的视野中。而这种通过z-index对比层级关系并影响子元素渲染顺序的结构，我们称之为层叠上下文（Stacking Context）。<br><br><br>### Z-index<br><br>&gt; <p class="pp">For a positioned box, the ‘z-index’ property specifies:</p><br>- The stack level of the box in the current stacking context.<br>- Whether the box establishes a stacking context.<br><div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="noopener">w3.org/CSS22#z-index</a></div>
 
-</li>
-</ul>
-</blockquote>
 <p></p><p class="pp">从W3的文档里可以了解到，对于定位的盒模型，z-index声明：</p><p></p>
 <ul>
 <li>在当前的层叠上下文中，层叠的水平</li>
@@ -206,22 +190,24 @@ z-index:  canvas  -1    0    1    2
 <ul>
 <li>This integer is the stack level of the generated box in the current stacking context. The box also establishes a new stacking context.</li>
 </ul>
+</blockquote>
+<blockquote>
 <p></p><p class="pp">auto</p><p></p>
 <ul>
-<li>The stack level of the generated box in the current stacking context is 0. If the box has ‘position: fixed’ or if it is the root, it also establishes a new stacking context.<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="external">w3.org/CSS22#z-index</a></div>
-
-</li>
+<li>The stack level of the generated box in the current stacking context is 0. If the box has ‘position: fixed’ or if it is the root, it also establishes a new stacking context.</li>
 </ul>
 </blockquote>
+<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="noopener">w3.org/CSS22#z-index</a></div>
+
 <p>那么便存在<code>数值</code>和<code>auto</code>两种类型的值，其中<code>auto</code>生效时，其在数值上与0相同。<br>而<code>数值</code>则表明了当前元素位于当前层叠上下文中的<code>stack level</code>，翻译过来叫<code>层叠水平</code>。</p>
 <h3 id="Stack-Level"><a href="#Stack-Level" class="headerlink" title="Stack Level"></a>Stack Level</h3><blockquote>
 <ul>
 <li>Boxes with greater stack levels are always formatted in front of boxes with lower stack levels. </li>
-<li>Boxes with the same stack level in a stacking context are stacked back-to-front according to document tree order.<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="external">w3.org/CSS22#z-index</a></div>
-
-</li>
+<li>Boxes with the same stack level in a stacking context are stacked back-to-front according to document tree order.</li>
 </ul>
 </blockquote>
+<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="noopener">w3.org/CSS22#z-index</a></div>
+
 <p></p><p class="pp">对于不同元素间的描述，这里抽出了两句有用的，总结起来就是：</p><p></p>
 <ul>
 <li>近大远小：元素层叠水平数值大的比小的更靠前（前者覆盖后者：100 &gt; 1 &gt; auto = 0 &gt; -1）</li>
@@ -237,11 +223,11 @@ z-index:  canvas  -1    0    1    2
 <li>the non-positioned floats.</li>
 <li>the in-flow, inline-level, non-positioned descendants, including inline tables and inline blocks.</li>
 <li>the child stacking contexts with stack level 0 and the positioned descendants with stack level 0.</li>
-<li>the child stacking contexts with positive stack levels (least positive first).<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="external">w3.org/CSS22#z-index</a></div>
-
-</li>
+<li>the child stacking contexts with positive stack levels (least positive first).</li>
 </ul>
 </blockquote>
+<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="noopener">w3.org/CSS22#z-index</a></div>
+
 <p>看完上代码实测一下，用图形示意就是：</p>
 <div class="sc" style="position: relative; z-index: 1; background: red;">background/borders<br>  <div class="sc" style="position: relative; z-index: -1; background: orange;">z-index &lt; 0<br>    <div class="sc" style="background: yellow; color: #666;">block<br>      <div class="sc" style="float: left; background: lightgreen; color: #666;">floats<br>        <div class="sc" style="display: inline-block; background: lightskyblue;">inline<br>          <div class="sc" style="position: relative; z-index: 0; background: cyan; color: #666;">z-index: 0 === auto<br>            <div class="sc" style="position: relative; z-index: 1; background: mediumpurple;">z-index &gt; 0<br>            </div><br>          </div><br>        </div><br>      </div><br>    </div><br>  </div><br></div><br><div style="text-align: center;">Back-to-front order</div><br><div></div>
 
@@ -252,11 +238,11 @@ z-index:  canvas  -1    0    1    2
 <li>A stacking context is atomic from the point of view of its parent stacking context;</li>
 <li>boxes in other stacking contexts may not come between any of its boxes.</li>
 <li>Each box belongs to one stacking context.</li>
-<li>Each positioned box in a given stacking context has an integer stack level, which is its position on the z-axis relative other stack levels within the same stacking context. <div class="zs"> ——<a href="https://www.w3.org/TR/CSS2/zindex.html#painting-order" target="_blank" rel="external">w3.org/CSS22#Painting order</a> </div>
-
-</li>
+<li>Each positioned box in a given stacking context has an integer stack level, which is its position on the z-axis relative other stack levels within the same stacking context. </li>
 </ul>
 </blockquote>
+<div class="zs"> ——<a href="https://www.w3.org/TR/CSS2/zindex.html#painting-order" target="_blank" rel="noopener">w3.org/CSS22#Painting order</a> </div>
+
 <p>对于层叠上下文，特性总结起来就是：</p>
 <ul>
 <li>可以嵌套</li>
@@ -268,11 +254,11 @@ z-index:  canvas  -1    0    1    2
 <h3 id="Establishes-A-Stacking-Context"><a href="#Establishes-A-Stacking-Context" class="headerlink" title="Establishes A Stacking Context"></a>Establishes A Stacking Context</h3><blockquote>
 <ul>
 <li>The root element forms the root stacking context. </li>
-<li>Other stacking contexts are generated by any positioned element (including relatively positioned elements) having a computed value of ‘z-index’ other than ‘auto’. <div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="external">w3.org/CSS22#z-index</a></div>
-
-</li>
+<li>Other stacking contexts are generated by any positioned element (including relatively positioned elements) having a computed value of ‘z-index’ other than ‘auto’. </li>
 </ul>
 </blockquote>
+<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="noopener">w3.org/CSS22#z-index</a></div>
+
 <p></p><p class="pp">起初，层叠上下文以两种形式存在：</p><p></p>
 <ul>
 <li>根元素<code>&lt;html&gt;</code>会形成顶级的层叠上下文</li>
@@ -280,9 +266,9 @@ z-index:  canvas  -1    0    1    2
 </ul>
 <blockquote>
 <p>Stacking contexts are not necessarily related to containing blocks.<br>In future levels of CSS, other properties may introduce stacking contexts.</p>
-<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="external">w3.org/CSS22#z-index</a></div>
-
 </blockquote>
+<div class="zs"> —— <a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="noopener">w3.org/CSS22#z-index</a></div>
+
 <p>而现在由于CSS3的出现，又多了一些由CSS属性直接导致的层叠上下文生成的方式：</p>
 <ul>
 <li>opacity ≠ 1</li>
@@ -295,12 +281,12 @@ z-index:  canvas  -1    0    1    2
 <li>will-change = 上面任意属性名</li>
 <li><strong> -webkit-overflow-scrolling = touch &amp; overflow ≠ (visible/hidden/unset) </strong></li>
 </ul>
-<p>这些规则会导致非常诡异的问题，比如本文遇到的那个坑，查看这个<a href="https://thunf.github.io/Demos/article/20180322_stacking_context?overflow" target="_blank" rel="external">诡异的弹层页面（示例）</a></p>
+<p>这些规则会导致非常诡异的问题，比如本文遇到的那个坑，查看这个<a href="https://thunf.github.io/Demos/article/20180322_stacking_context?overflow" target="_blank" rel="noopener">诡异的弹层页面（示例）</a></p>
 <h2 id="Analyze-amp-Solve-Problem"><a href="#Analyze-amp-Solve-Problem" class="headerlink" title="Analyze &amp; Solve Problem"></a>Analyze &amp; Solve Problem</h2><p>通过学习并理解以上的知识点，现在来解释一下诡异的问题到底是怎么出现的！<br><code>实际上debug的步骤，则是刚好相反的，先试验分析再找理论支持，并解释问题出现的原因</code></p>
-<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"dialog"</span> <span class="attr">style</span>=<span class="string">"position: fixed; z-index: 101;"</span>&gt;</span>dialog<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mask"</span> <span class="attr">style</span>=<span class="string">"position: fixed; z-index: 100;"</span>&gt;</span>mask<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"dialog"</span> <span class="attr">style</span>=<span class="string">"position: fixed; z-index: 101;"</span>&gt;</span>dialog<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"mask"</span> <span class="attr">style</span>=<span class="string">"position: fixed; z-index: 100;"</span>&gt;</span>mask<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这个结构不是什么好例子🌰，但是恰好某个组件是这么实现的，所以为了排查问题，抽离了最核心的DEMO，就是以上这个DOM结构</p>
 <p>假设现在<code>#app</code>不具备前文所述的任何一种产生层叠上下文的条件，那么此时<code>#dialog</code>和<code>#mask</code>应当作为<code>同级别</code>层叠上下文来看待，并遵循<code>近大远小</code>的原则，dialog应当覆盖在mask之上。（😂确实我们想要这个效果）</p>
-<p>但现在由于某种神奇的原因，在<code>#app</code>上添加了<code>-webkit-overflow-scrolling: touch; overflow: auto</code>属性，此时悲剧发生了：<a href="https://thunf.github.io/Demos/article/20180322_stacking_context?overflow" target="_blank" rel="external">IOS手机打开，mask覆盖到了dialog之上（😱WAHT HAPPENED!?）</a></p>
+<p>但现在由于某种神奇的原因，在<code>#app</code>上添加了<code>-webkit-overflow-scrolling: touch; overflow: auto</code>属性，此时悲剧发生了：<a href="https://thunf.github.io/Demos/article/20180322_stacking_context?overflow" target="_blank" rel="noopener">IOS手机打开，mask覆盖到了dialog之上（😱WAHT HAPPENED!?）</a></p>
 <p>后来经过试验，<code>#app</code>元素若存在<strong>上述9种任意一种属性/组合</strong>，都会导致这个诡异的状态出现！！！😱AMAZING！！！</p>
 <h3 id="科学解释"><a href="#科学解释" class="headerlink" title="科学解释"></a>科学解释</h3><p>用上面的原理解释一下，当<code>#app</code>元素存在上述9种任意一种属性/组合时，发生了什么：</p>
 <ul>
@@ -320,22 +306,22 @@ z-index:  canvas  -1    0    1    2
 <h3 id="问题联想"><a href="#问题联想" class="headerlink" title="问题联想"></a>问题联想</h3><p>恰好在这个例子中，我遇到了<code>-webkit-overflow-scrolling: touch; overflow: auto</code>这个组合导致的问题，所以曾经一度联想，是不是因为BFC导致的，并发现一篇很好的文章：</p>
 <blockquote>
 <p>BFC元素特性表现原则就是，内部子元素再怎么翻江倒海，翻云覆雨都不会影响外部的元素</p>
-<div class="zs"> —— <a href="http://www.zhangxinxu.com/wordpress/2015/02/css-deep-understand-flow-bfc-column-two-auto-layout/" target="_blank" rel="external">CSS深入理解流体特性和BFC特性</a></div>
-
 </blockquote>
+<div class="zs"> —— <a href="http://www.zhangxinxu.com/wordpress/2015/02/css-deep-understand-flow-bfc-column-two-auto-layout/" target="_blank" rel="noopener">CSS深入理解流体特性和BFC特性</a></div>
+
 <p>但是作为noZUOnoDIE星人，还是必须动手试一下的嘛。结果发现根本没有这回事，跟BFC一点关系都没有！！！BFC表示拒绝背锅~🙅🙅🙅<br>并且在严谨的控制变量法下发现：<strong>只有overflow ≠ (visible/hidden/unset)时，<code>-webkit-overflow-scrolling: touch</code>才会使当前元素生成叠层上下文</strong></p>
 <p>这就是为什么在ISO手机上死活关不掉这个遮罩层的原因所在了吧😑</p>
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context" target="_blank" rel="external">The stacking context</a></li>
-<li><a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="external">w3.org/CSS22#z-index</a></li>
-<li><a href="https://www.w3.org/TR/CSS2/zindex.html#painting-order" target="_blank" rel="external">Appendix E. Elaborate description of Stacking Contexts</a></li>
-<li><a href="http://blog.angular.in/css-stacking-contextli-na-xie-xian-wei-ren-zhi-de-keng/" target="_blank" rel="external">CSS Stacking Context里那些鲜为人知的坑</a></li>
-<li><a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css3-isolation-isolate/" target="_blank" rel="external">理解CSS3 isolation: isolate的表现和作用</a></li>
-<li><a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="external">深入理解CSS中的层叠上下文和层叠顺序</a></li>
-<li><a href="http://www.zhangxinxu.com/wordpress/2015/02/css-deep-understand-flow-bfc-column-two-auto-layout/" target="_blank" rel="external">CSS深入理解流体特性和BFC特性</a></li>
-<li><a href="http://www.zhangxinxu.com/wordpress/2015/05/css3-transform-affect/" target="_blank" rel="external">CSS3 transform对普通元素的N多渲染影响</a></li>
-<li><a href="https://www.cnblogs.com/xiaohuochai/p/5289653.html" target="_blank" rel="external">深入理解CSS溢出overflow</a></li>
-<li><a href="http://www.cnblogs.com/xiaohuochai/p/5248536.html" target="_blank" rel="external">深入理解BFC</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context" target="_blank" rel="noopener">The stacking context</a></li>
+<li><a href="https://www.w3.org/TR/CSS22/visuren.html#z-index" target="_blank" rel="noopener">w3.org/CSS22#z-index</a></li>
+<li><a href="https://www.w3.org/TR/CSS2/zindex.html#painting-order" target="_blank" rel="noopener">Appendix E. Elaborate description of Stacking Contexts</a></li>
+<li><a href="http://blog.angular.in/css-stacking-contextli-na-xie-xian-wei-ren-zhi-de-keng/" target="_blank" rel="noopener">CSS Stacking Context里那些鲜为人知的坑</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css3-isolation-isolate/" target="_blank" rel="noopener">理解CSS3 isolation: isolate的表现和作用</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/" target="_blank" rel="noopener">深入理解CSS中的层叠上下文和层叠顺序</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2015/02/css-deep-understand-flow-bfc-column-two-auto-layout/" target="_blank" rel="noopener">CSS深入理解流体特性和BFC特性</a></li>
+<li><a href="http://www.zhangxinxu.com/wordpress/2015/05/css3-transform-affect/" target="_blank" rel="noopener">CSS3 transform对普通元素的N多渲染影响</a></li>
+<li><a href="https://www.cnblogs.com/xiaohuochai/p/5289653.html" target="_blank" rel="noopener">深入理解CSS溢出overflow</a></li>
+<li><a href="http://www.cnblogs.com/xiaohuochai/p/5248536.html" target="_blank" rel="noopener">深入理解BFC</a></li>
 </ul>
 
         
@@ -351,7 +337,7 @@ z-index:  canvas  -1    0    1    2
 
             
     
-        <a href="//thunf.cn/2018/03/22/20180322-css-stacking-context/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="//thunf.cn/2018/03/22/20180322-css-stacking-context/">Comments</a>
+        <a href="//thunf.me/2018/03/22/20180322-css-stacking-context/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="//thunf.me/2018/03/22/20180322-css-stacking-context/">Comments</a>
     
 
         </footer>
@@ -391,7 +377,7 @@ z-index:  canvas  -1    0    1    2
 <aside id="profile">
     <div class="inner profile-inner">
         <div class="base-info profile-block">
-            <img id="avatar" src="/css/images/avatar.png" />
+            <img id="avatar" src="/css/images/avatar.png">
             <h2 id="name">Thunf</h2>
             <h3 id="title">沉醉不知归路</h3>
             <span id="location"><i class="fa fa-map-marker"></i>Beijing, China</span>
@@ -399,13 +385,13 @@ z-index:  canvas  -1    0    1    2
         </div>
         <div class="article-info profile-block">
             <div class="article-info-block">
-                <a class="profile-link" href="/archives" >
+                <a class="profile-link" href="/archives">
                     7
                     <span>文章</span>
                 </a>                
             </div>
             <div class="article-info-block">
-                <a class="profile-link" href="/tags" >
+                <a class="profile-link" href="/tags">
                     10
                     <span>标签</span>
                 </a>                
@@ -433,7 +419,7 @@ z-index:  canvas  -1    0    1    2
     <div class="widget-wrap">
         <h3 class="widget-title">最新文章</h3>
         <div class="widget">
-            <ul id="recent-post" class="">
+            <ul id="recent-post" class>
                 
                     <li>
                         
@@ -574,8 +560,8 @@ z-index:  canvas  -1    0    1    2
         <footer id="footer">
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; 2018
-            <script>document.write(location.hostname || "thunf.cn")</script>
+            &copy; 2019
+            <script>document.write(location.hostname || "thunf.me")</script>
             <span id="busuanzi_container_site_pv">已被围观<span id="busuanzi_value_site_pv"></span>次</span>
             <br>
             Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.
@@ -589,7 +575,7 @@ z-index:  canvas  -1    0    1    2
     var disqus_shortname = 'thunf';
     
     
-    var disqus_url = '//thunf.cn/2018/03/22/20180322-css-stacking-context/';
+    var disqus_url = '//thunf.me/2018/03/22/20180322-css-stacking-context/';
     
     var wOnload = window.onload;
     window.onload = function() {
@@ -613,7 +599,7 @@ z-index:  canvas  -1    0    1    2
 <script src="/js/main.js"></script>
 
 <!-- 不蒜子 -->
-<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <!-- 百度 -->
 <script>
     var _hmt = _hmt || [];
